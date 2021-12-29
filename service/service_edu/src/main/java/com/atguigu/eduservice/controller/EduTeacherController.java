@@ -6,6 +6,7 @@ import com.atguigu.eduservice.entity.po.EduTeacher;
 import com.atguigu.eduservice.entity.vo.TeacherQuery;
 import com.atguigu.eduservice.mapper.EduTeacherMapper;
 import com.atguigu.eduservice.service.impl.EduTeacherServiceImpl;
+import com.atguigu.servicebase.exceptionHandler.GuliException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
@@ -34,22 +35,28 @@ public class EduTeacherController {
     public EduTeacherMapper eduTeacherMapper;
 
 
-    @GetMapping("")
-    @ApiOperation("获取所有讲师列表")
+    @GetMapping("/all")
+    @ApiOperation("get all teacher list")
     public R findAllTeacher(){
+        try {
+            int i = 10 /0;
+        }catch (Exception e){
+            throw new GuliException(20001,"guliException");
+        }
+
         List<EduTeacher> list = eduTeacherService.list();
         return R.ok().data("item",list);
     }
 
     @DeleteMapping("/delete/{id}")
-    @ApiOperation("逻辑删除讲师")
+    @ApiOperation("logical delete teacher")
     @ApiImplicitParam(name = "id",value = "id",required = true)
     public R removeTeacher(@PathVariable(value = "id") String id){
        return  eduTeacherService.removeById(id)?R.ok():R.error();
     }
 
     @GetMapping("pageTeacher/{current}/{limit}")
-    @ApiOperation("分页查询讲师")
+    @ApiOperation("paging query teacher")
     public R pageListTeacher(@PathVariable long current,
                              @PathVariable long limit){
         Page<EduTeacher> eduTeacherPage = new Page<>(current,limit);
@@ -59,7 +66,7 @@ public class EduTeacherController {
         return R.ok().data("rows",records).data("total",total);
     }
 
-    @ApiOperation("多条件分页查询讲师")
+    @ApiOperation("multiple condition query teacher")
     @PostMapping("pageTeacherCondition/{current}/{limit}")
     public R pageTeacherCondition(@PathVariable long current,
                                   @PathVariable long limit,
@@ -88,21 +95,21 @@ public class EduTeacherController {
         return R.ok().data("rows",records).data("total",total);
     }
 
-    @ApiOperation("添加讲师")
+    @ApiOperation("add a teacher")
     @PostMapping("/addTeacher")
     public R addTeacher(@RequestBody EduTeacher eduTeacher){
         boolean save = eduTeacherService.save(eduTeacher);
         return save?R.ok():R.error();
     }
 
-    @ApiOperation("通过id获取讲师")
+    @ApiOperation("get teacher through id")
     @GetMapping("getTeacher/{id}")
     public R getTeacher(@PathVariable String id){
         EduTeacher teacher = eduTeacherService.getById(id);
         return R.ok().data("teacher",teacher);
     }
 
-    @ApiOperation("修改讲师")
+    @ApiOperation("update teacher")
     @PostMapping("/updateTeacher")
     public R updateTeacher(@RequestBody EduTeacher eduTeacher){
         boolean save = eduTeacherService.updateById(eduTeacher);

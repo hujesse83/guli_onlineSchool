@@ -10,7 +10,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class BaseEntity {
+public abstract class BaseEntity {
 
     @ApiModelProperty(value = "ID")
     @TableId(value = "id", type = IdType.ASSIGN_ID)

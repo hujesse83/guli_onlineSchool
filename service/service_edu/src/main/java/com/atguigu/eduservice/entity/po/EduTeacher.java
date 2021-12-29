@@ -1,9 +1,9 @@
 package com.atguigu.eduservice.entity.po;
 
 import com.atguigu.servicebase.entity.BaseEntity;
+import com.atguigu.servicebase.entity.BaseEntityVersion;
 import com.baomidou.mybatisplus.annotation.*;
 
-import java.util.Date;
 
 import java.io.Serializable;
 
@@ -19,11 +19,9 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="EduTeacher对象", description="讲师")
-public class EduTeacher extends BaseEntity implements Serializable {
+public class EduTeacher extends BaseEntityVersion implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-
 
     @ApiModelProperty(value = "讲师姓名")
     private String name;
@@ -46,8 +44,5 @@ public class EduTeacher extends BaseEntity implements Serializable {
     @ApiModelProperty(value = "逻辑删除")
     @TableLogic
     private Integer isDeleted;
-
-
-
 
 }

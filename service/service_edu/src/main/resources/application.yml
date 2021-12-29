@@ -1,8 +1,8 @@
 spring:
-  prifile:
-    active: dev
   application:
     name: service-edu
+  profiles:
+    active: dev
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
 #    driver-class-name: com.mysql.cj.jdbc.Driver
@@ -31,3 +31,7 @@ hikari:
   maximum-pool-size: 12
   minimum-idle: 10
   pool-name: GuliHikariPool
+# 设置日志级别
+#logging:
+#  level:
+#    root: WARN
