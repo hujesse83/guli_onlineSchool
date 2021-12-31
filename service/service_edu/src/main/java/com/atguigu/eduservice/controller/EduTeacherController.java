@@ -90,6 +90,7 @@ public class EduTeacherController {
         if (StringUtils.hasLength(end)) {
             queryWrapper.le("gmt_modified", end);
         }
+        queryWrapper.orderByDesc("gmt_create","gmt_modified");
         Page<EduTeacher> page = eduTeacherService.page(eduTeacherPage, queryWrapper);
         List<EduTeacher> records = page.getRecords();
         long total = page.getTotal();
