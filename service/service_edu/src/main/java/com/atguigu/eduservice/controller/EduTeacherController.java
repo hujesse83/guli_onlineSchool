@@ -27,6 +27,7 @@ import java.util.List;
 @RequestMapping("/eduservice/teacher")
 @Api(tags = "讲师管理")
 @ApiSupport(author = "jesse.hu")  // 主要是便于找到接口拥有者
+@CrossOrigin
 public class EduTeacherController {
     @Autowired
     public EduTeacherServiceImpl eduTeacherService;
@@ -37,85 +38,84 @@ public class EduTeacherController {
 
     @GetMapping("/all")
     @ApiOperation("get all teacher list")
-    public R findAllTeacher(){
+    public R findAllTeacher() {
         try {
-            int i = 10 /0;
-        }catch (Exception e){
-            throw new GuliException(20001,"guliException");
+            int i = 10 / 0;
+        } catch (Exception e) {
+            throw new GuliException(20001, "guliException");
         }
 
         List<EduTeacher> list = eduTeacherService.list();
-        return R.ok().data("item",list);
+        return R.ok().data("item", list);
     }
 
     @DeleteMapping("/delete/{id}")
     @ApiOperation("logical delete teacher")
-    @ApiImplicitParam(name = "id",value = "id",required = true)
-    public R removeTeacher(@PathVariable(value = "id") String id){
-       return  eduTeacherService.removeById(id)?R.ok():R.error();
+    @ApiImplicitParam(name = "id", value = "id", required = true)
+    public R removeTeacher(@PathVariable(value = "id") String id) {
+        return eduTeacherService.removeById(id) ? R.ok() : R.error();
     }
 
     @GetMapping("pageTeacher/{current}/{limit}")
     @ApiOperation("paging query teacher")
     public R pageListTeacher(@PathVariable long current,
-                             @PathVariable long limit){
-        Page<EduTeacher> eduTeacherPage = new Page<>(current,limit);
+                             @PathVariable long limit) {
+        Page<EduTeacher> eduTeacherPage = new Page<>(current, limit);
         Page<EduTeacher> page = eduTeacherService.page(eduTeacherPage, null);
         List<EduTeacher> records = page.getRecords();
         long total = page.getTotal();
-        return R.ok().data("rows",records).data("total",total);
+        return R.ok().data("rows", records).data("total", total);
     }
 
     @ApiOperation("multiple condition query teacher")
-    @PostMapping("pageTeacherCondition/{current}/{limit}")
+    @PostMapping("/pageTeacherCondition/{current}/{limit}")
     public R pageTeacherCondition(@PathVariable long current,
                                   @PathVariable long limit,
-                                  @RequestBody (required = false) TeacherQuery teacherQueryVo){
-        Page<EduTeacher> eduTeacherPage = new Page<>(current,limit);
+                                  @RequestBody(required = false) TeacherQuery teacherQueryVo) {
+        Page<EduTeacher> eduTeacherPage = new Page<>(current, limit);
         QueryWrapper<EduTeacher> queryWrapper = new QueryWrapper<>();
         String name = teacherQueryVo.getName();
         String begin = teacherQueryVo.getBegin();
         String end = teacherQueryVo.getEnd();
         Integer level = teacherQueryVo.getLevel();
-        if(StringUtils.hasLength(name)){
-            queryWrapper.like("name",name);
+        if (StringUtils.hasLength(name)) {
+            queryWrapper.like("name", name);
         }
-        if(level!=null){
-            queryWrapper.like("level",level);
+        if (level != null) {
+            queryWrapper.like("level", level);
         }
-        if(StringUtils.hasLength(begin)){
-            queryWrapper.ge("gmt_create",begin);
+        if (StringUtils.hasLength(begin)) {
+            queryWrapper.ge("gmt_create", begin);
         }
-        if(StringUtils.hasLength(begin)){
-            queryWrapper.le("gmt_modified",end);
+        if (StringUtils.hasLength(end)) {
+            queryWrapper.le("gmt_modified", end);
         }
         Page<EduTeacher> page = eduTeacherService.page(eduTeacherPage, queryWrapper);
         List<EduTeacher> records = page.getRecords();
         long total = page.getTotal();
-        return R.ok().data("rows",records).data("total",total);
+        return R.ok().data("rows", records).data("total", total);
     }
 
     @ApiOperation("add a teacher")
     @PostMapping("/addTeacher")
-    public R addTeacher(@RequestBody EduTeacher eduTeacher){
+    public R addTeacher(@RequestBody EduTeacher eduTeacher) {
         boolean save = eduTeacherService.save(eduTeacher);
-        return save?R.ok():R.error();
+        return save ? R.ok() : R.error();
     }
 
     @ApiOperation("get teacher through id")
     @GetMapping("getTeacher/{id}")
-    public R getTeacher(@PathVariable String id){
+    public R getTeacher(@PathVariable String id) {
         EduTeacher teacher = eduTeacherService.getById(id);
-        return R.ok().data("teacher",teacher);
+        return R.ok().data("teacher", teacher);
     }
 
     @ApiOperation("update teacher")
     @PostMapping("/updateTeacher")
-    public R updateTeacher(@RequestBody EduTeacher eduTeacher){
+    public R updateTeacher(@RequestBody EduTeacher eduTeacher) {
         boolean save = eduTeacherService.updateById(eduTeacher);
-        return save?R.ok():R.error();
+        return save ? R.ok() : R.error();
     }
-
 
 
 }
