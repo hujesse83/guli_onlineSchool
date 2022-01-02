@@ -32,10 +32,6 @@ public class EduTeacherController {
     @Autowired
     public EduTeacherServiceImpl eduTeacherService;
 
-    @Autowired
-    public EduTeacherMapper eduTeacherMapper;
-
-
     @GetMapping("/all")
     @ApiOperation("get all teacher list")
     public R findAllTeacher() {
