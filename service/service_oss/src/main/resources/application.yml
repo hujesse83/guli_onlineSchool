@@ -1,0 +1,23 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: service-oss
+  profiles:
+    active: dev
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+#aliyun configuration
+# ?????????? '='??????????????
+aliyun:
+  oss:
+    file:
+      endPoint: oss-cn-shanghai.aliyuncs.com
+      keyId: LTAI5tC97PRptsPVR9c6WcXX
+      keySecret: ZbYf3W9NIXsAseSzAjV3ZYAHz8zGY2
+      bucketName: guli-edu-9527
+
+# ????????
