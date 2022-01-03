@@ -19,7 +19,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="EduTeacher对象", description="讲师")
-public class EduTeacher extends BaseEntityVersion implements Serializable {
+public class EduTeacher extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

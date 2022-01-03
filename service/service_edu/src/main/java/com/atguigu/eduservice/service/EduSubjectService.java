@@ -1,8 +1,11 @@
 package com.atguigu.eduservice.service;
 
+import com.atguigu.eduservice.entity.EduSubjectTree;
 import com.atguigu.eduservice.entity.po.EduSubject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>
@@ -15,4 +18,6 @@ import org.springframework.web.multipart.MultipartFile;
 public interface EduSubjectService extends IService<EduSubject> {
 
     void saveSubject(MultipartFile file);
+
+    List<EduSubjectTree> getAllOneTwoSubject();
 }

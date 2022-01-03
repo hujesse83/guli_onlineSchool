@@ -35,12 +35,6 @@ public class EduTeacherController {
     @GetMapping("/all")
     @ApiOperation("get all teacher list")
     public R findAllTeacher() {
-        try {
-            int i = 10 / 0;
-        } catch (Exception e) {
-            throw new GuliException(20001, "guliException");
-        }
-
         List<EduTeacher> list = eduTeacherService.list();
         return R.ok().data("item", list);
     }
