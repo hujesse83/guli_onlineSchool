@@ -16,8 +16,6 @@ aliyun:
   oss:
     file:
       endPoint: oss-cn-shanghai.aliyuncs.com
-      keyId: LTAI5tC97PRptsPVR9c6WcXX
-      keySecret: ZbYf3W9NIXsAseSzAjV3ZYAHz8zGY2
-      bucketName: guli-edu-9527
+
 
 # ????????
