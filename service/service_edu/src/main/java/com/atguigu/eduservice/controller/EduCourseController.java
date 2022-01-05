@@ -31,6 +31,7 @@ public class EduCourseController {
     @GetMapping("/getCourseInfo/{courseId}")
     public R getCourseInfo(@PathVariable String courseId){
         CourseInfoVo courseInfo = eduCourseService.getCourseInfo(courseId);
+        System.out.println(courseInfo);
         return R.ok().data("courseInfoVo",courseInfo);
     }
 
