@@ -1,5 +1,6 @@
 package com.atguigu.eduservice.entity.po;
 
+import com.atguigu.servicebase.entity.BaseEntity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -20,7 +21,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="EduChapter对象", description="课程")
-public class EduChapter implements Serializable {
+public class EduChapter extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -32,6 +33,5 @@ public class EduChapter implements Serializable {
 
     @ApiModelProperty(value = "显示排序")
     private Integer sort;
-
 
 }
