@@ -1,17 +1,25 @@
 package com.atguigu.eduservice.service.impl;
 
+import com.atguigu.commonutils.R;
 import com.atguigu.eduservice.constants.ErrorCode;
 import com.atguigu.eduservice.entity.po.EduCourse;
 import com.atguigu.eduservice.entity.po.EduCourseDescription;
 import com.atguigu.eduservice.entity.vo.CourseInfoVo;
+import com.atguigu.eduservice.entity.vo.CoursePublishVo;
+import com.atguigu.eduservice.entity.vo.CourseQuery;
 import com.atguigu.eduservice.mapStruct.EduCourseConverter;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
 import com.atguigu.eduservice.service.EduCourseService;
 import com.atguigu.servicebase.exceptionHandler.GuliException;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 /**
  * <p>
@@ -26,6 +34,13 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Autowired
     EduCourseDescriptionServiceImpl eduCourseDescriptionService;
+
+    @Autowired
+    EduVideoServiceImpl eduVideoService;
+
+    @Autowired
+    EduChapterServiceImpl eduChapterService;
+
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -69,5 +84,47 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         description.setId(courseInfoVo.getId());
         description.setDescription(courseInfoVo.getDescription());
         eduCourseDescriptionService.updateById(description);
+    }
+
+    @Override
+    public CoursePublishVo publishCourseInfo(String id) {
+        return baseMapper.getPublishCourseInfo(id);
+    }
+
+    @Override
+    public R queryCourseCondition(long current, long limit, CourseQuery courseQuery) {
+        Page<EduCourse> eduCoursePage = new Page<>(current, limit);
+        QueryWrapper<EduCourse> queryWrapper = new QueryWrapper<>();
+        String title = courseQuery.getTitle();
+        String status = courseQuery.getStatus();
+        if (StringUtils.hasLength(title)){
+            queryWrapper.like("title",title);
+        }
+        if (StringUtils.hasLength(status)){
+            queryWrapper.eq("status",status);
+        }
+        queryWrapper.orderByDesc("gmt_create","gmt_modified");
+        Page<EduCourse> page = this.page(eduCoursePage, queryWrapper);
+        List<EduCourse> records = page.getRecords();
+        long total = page.getTotal();
+        return R.ok().data("rows", records).data("total", total);
+    }
+
+    /**
+     * 1、根据课程ID删掉小节
+     * 2、删除章节
+     * 3、删除描述
+     * 4、删除本身
+     */
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void removeCourse(String courseId) {
+        eduVideoService.removeByCourseId(courseId);
+        eduChapterService.removeByCourseId(courseId);
+        eduCourseDescriptionService.removeByCourseId(courseId);
+        boolean res = this.removeById(courseId);
+        if (!res){
+            throw new GuliException(ErrorCode.ERROR_CODE,"delete failed!");
+        }
     }
 }

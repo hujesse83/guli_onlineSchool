@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -58,6 +60,10 @@ public class EduVideo extends BaseEntityVersion implements Serializable {
 
     @ApiModelProperty(value = "视频源文件大小（字节）")
     private Long size;
+
+    @ApiModelProperty(value = "逻辑删除")
+    @TableLogic
+    private Integer isDeleted;
 
 
 }

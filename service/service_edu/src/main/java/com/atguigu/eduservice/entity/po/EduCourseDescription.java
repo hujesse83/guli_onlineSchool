@@ -1,10 +1,9 @@
 package com.atguigu.eduservice.entity.po;
 
 import com.atguigu.servicebase.entity.BaseEntity;
-import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -28,6 +27,10 @@ public class EduCourseDescription extends BaseEntity implements Serializable {
 
     @ApiModelProperty(value = "课程简介")
     private String description;
+
+    @ApiModelProperty(value = "逻辑删除")
+    @TableLogic
+    private Integer isDeleted;
 
 
 

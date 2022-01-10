@@ -1,7 +1,10 @@
 package com.atguigu.eduservice.service;
 
+import com.atguigu.commonutils.R;
 import com.atguigu.eduservice.entity.po.EduCourse;
 import com.atguigu.eduservice.entity.vo.CourseInfoVo;
+import com.atguigu.eduservice.entity.vo.CoursePublishVo;
+import com.atguigu.eduservice.entity.vo.CourseQuery;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -19,4 +22,10 @@ public interface EduCourseService extends IService<EduCourse> {
     CourseInfoVo getCourseInfo(String courseId);
 
     void updateCourseInfo(CourseInfoVo courseInfoVo);
+
+    CoursePublishVo publishCourseInfo(String id);
+
+    R queryCourseCondition(long current, long limit, CourseQuery query);
+
+    void removeCourse(String courseId);
 }
