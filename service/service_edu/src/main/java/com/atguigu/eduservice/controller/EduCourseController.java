@@ -72,7 +72,6 @@ public class EduCourseController {
         eduCourseService.updateById(eduCourse);
         return R.ok();
     }
-
     @DeleteMapping("/delete/{courseId}")
     public R deleteCourse(@PathVariable  String courseId){
         eduCourseService.removeCourse(courseId);

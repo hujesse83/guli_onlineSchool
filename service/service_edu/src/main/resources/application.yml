@@ -14,6 +14,10 @@ spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
  # 配置日志  打印sql语句
 mybatis-plus:
 #  configuration:
@@ -38,3 +42,8 @@ hikari:
 #    root: WARN
 server:
   port: 9001
+
+# 开启熔断
+feign:
+  hystrix:
+    enabled: true

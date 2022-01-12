@@ -3,14 +3,20 @@ package com.atguigu.vod.service.impl;
 import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadStreamRequest;
 import com.aliyun.vod.upload.resp.UploadStreamResponse;
+import com.aliyuncs.DefaultAcsClient;
+import com.aliyuncs.vod.model.v20170321.DeleteVideoRequest;
+import com.aliyuncs.vod.model.v20170321.DeleteVideoResponse;
+import com.atguigu.servicebase.exceptionHandler.GuliException;
 import com.atguigu.vod.service.VodService;
 import com.atguigu.vod.utils.ConstantVodUtils;
+import com.atguigu.vod.utils.InitObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * @author jesse.hu
@@ -54,5 +60,32 @@ public class VodServiceImpl implements VodService {
             log.error(e.getMessage());
         }
         return "";
+    }
+
+    @Override
+    public void removeVideo(String videoId) {
+        DefaultAcsClient client = InitObject.initVodClient(ConstantVodUtils.ACCESS_KEY_ID,ConstantVodUtils.ACCESS_KEY_SECRET );
+        DeleteVideoResponse response;
+        try {
+            response = deleteVideo(client,videoId);
+        } catch (Exception e) {
+            throw new GuliException(20001," 删除视频失败");
+        }
+        log.info("RequestId = " + response.getRequestId() + "\n");
+    }
+
+    @Override
+    public void removeBatchVideo(List<String> videoIdList) {
+        String ids = String.join(",",videoIdList);
+        System.out.println(ids);
+        removeVideo(ids);
+    }
+
+    public static DeleteVideoResponse deleteVideo(DefaultAcsClient client,String videoId) throws Exception {
+        DeleteVideoRequest request = new DeleteVideoRequest();
+        //支持传入多个视频ID，多个用逗号分隔
+        // request.setVideoIds("VideoId1,VideoId2");
+        request.setVideoIds(videoId);
+        return client.getAcsResponse(request);
     }
 }

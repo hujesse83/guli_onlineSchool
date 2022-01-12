@@ -8,7 +8,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-01-11T16:04:40+0800",
+    date = "2022-01-12T16:06:48+0800",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class EduChapterConverterImpl implements EduChapterConverter {
