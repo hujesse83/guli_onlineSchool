@@ -23,7 +23,7 @@ public class BannerFrontController {
     private CrmBannerService bannerService;
 
     //查询所有banner
-    @GetMapping("getAllBanner")
+    @GetMapping("/getAllBanner")
     public R getAllBanner() {
         List<CrmBanner> list = bannerService.selectAllBanner();
         return R.ok().data("list",list);

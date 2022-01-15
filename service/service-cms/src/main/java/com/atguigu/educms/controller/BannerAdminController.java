@@ -22,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/educms/banneradmin")
+@CrossOrigin
 public class BannerAdminController {
 
     @Autowired
