@@ -8,7 +8,7 @@ import javax.annotation.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-01-13T17:02:04+0800",
+    date = "2022-01-15T10:17:38+0800",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 1.8.0_311 (Oracle Corporation)"
 )
 public class EduVideoConverterImpl implements EduVideoConverter {
