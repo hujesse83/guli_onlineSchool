@@ -15,6 +15,4 @@ public class UserLoginVo {
     @ApiModelProperty(value = "密码")
     private String password;
 
-    @ApiModelProperty(value = "昵称")
-    private String nickname;
 }
