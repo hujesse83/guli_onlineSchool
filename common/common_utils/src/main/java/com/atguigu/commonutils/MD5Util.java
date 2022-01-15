@@ -95,7 +95,7 @@ public class MD5Util {
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         // 原文
         String plaintext = "111111";
         //  plaintext = "123456";
