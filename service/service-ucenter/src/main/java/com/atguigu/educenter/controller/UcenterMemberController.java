@@ -31,14 +31,14 @@ public class UcenterMemberController {
 
 
     // 登录
-    @PostMapping
+    @PostMapping("/login")
     public R loginUser(@RequestBody UserLoginVo userLoginVo){
         String token = memberService.login(userLoginVo);
         return R.ok().data("token",token);
     }
 
     //注册
-    @PostMapping("register")
+    @PostMapping("/register")
     public R registerUser(@RequestBody @Validated UserRegisterVo registerVo) {
         memberService.register(registerVo);
         return R.ok();
