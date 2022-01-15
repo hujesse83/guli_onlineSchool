@@ -18,4 +18,6 @@ public interface UcenterMemberService extends IService<UcenterMember> {
     String login(UserLoginVo userLoginVo);
 
     void register(UserRegisterVo registerVo);
+
+    String generateWxCode();
 }

@@ -7,6 +7,7 @@ import com.atguigu.educenter.entity.vo.UserLoginVo;
 import com.atguigu.educenter.entity.vo.UserRegisterVo;
 import com.atguigu.educenter.mapper.UcenterMemberMapper;
 import com.atguigu.educenter.service.UcenterMemberService;
+import com.atguigu.educenter.utils.ConstantWxUtils;
 import com.atguigu.servicebase.exceptionHandler.GuliException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -15,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.net.URLEncoder;
 
 /**
  * <p>
@@ -89,5 +92,34 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
 
         baseMapper.insert(ucenterMember);
 
+    }
+
+    @Override
+    public String generateWxCode() {
+        String baseUrl = "https://open.weixin.qq.com/connect/qrconnect" +
+                "?appid=%s" +
+                "&redirect_uri=%s" +
+                "&response_type=code" +
+                "&scope=snsapi_login" +
+                "&state=%s" +
+                "#wechat_redirect";
+
+        //对redirect_url进行URLEncoder编码
+        String redirectUrl = ConstantWxUtils.WX_OPEN_REDIRECT_URL;
+        try {
+            redirectUrl = URLEncoder.encode(redirectUrl, "utf-8");
+        }catch(Exception ignored) {
+        }
+
+        //设置%s里面值
+        String url = String.format(
+                baseUrl,
+                ConstantWxUtils.WX_OPEN_APP_ID,
+                redirectUrl,
+                "atguigu"
+        );
+
+        //重定向到请求微信地址里面
+        return "redirect:"+url;
     }
 }
