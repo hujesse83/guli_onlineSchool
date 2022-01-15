@@ -4,12 +4,15 @@ import com.atguigu.commonutils.JwtUtils;
 import com.atguigu.commonutils.MD5Util;
 import com.atguigu.educenter.entity.po.UcenterMember;
 import com.atguigu.educenter.entity.vo.UserLoginVo;
+import com.atguigu.educenter.entity.vo.UserRegisterVo;
 import com.atguigu.educenter.mapper.UcenterMemberMapper;
 import com.atguigu.educenter.service.UcenterMemberService;
 import com.atguigu.servicebase.exceptionHandler.GuliException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -24,6 +27,9 @@ import org.springframework.util.StringUtils;
 @Service
 @Slf4j
 public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, UcenterMember> implements UcenterMemberService {
+
+    @Autowired
+    private RedisTemplate<String,String> redisTemplate;
 
     @Override
     public String login(UserLoginVo userLoginVo) {
@@ -42,7 +48,7 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         QueryWrapper<UcenterMember> wrapper = new QueryWrapper<>();
         wrapper.eq("mobile",mobile);
         wrapper.eq("is_disabled",0);
-        UcenterMember user = baseMapper.selectOne(wrapper);
+        UcenterMember user = baseMapper.selectOne(wrapper); // 这里必要要构造函数才能接受到
         if(user==null){
             throw new GuliException(20001,"登录失败");
         }
@@ -52,5 +58,36 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         }
         // 登录成功
         return JwtUtils.getJwtToken(user.getId(),user.getNickname());
+    }
+
+    @Override
+    public void register(UserRegisterVo registerVo) {
+        String code = registerVo.getCode(); //验证码
+        String mobile = registerVo.getMobile(); //手机号
+        String nickname = registerVo.getNickname(); //昵称
+        String password = registerVo.getPassword(); //密码
+
+        // 先拿redis缓存判断是有讲究的、 不然查数据库验证高并发受不了
+        String redisCode = redisTemplate.opsForValue().get(mobile);
+        if (!code.equals(redisCode)){
+            throw new GuliException(20001,"验证码不正确");
+        }
+
+        // 判断手机号是否重复
+        QueryWrapper<UcenterMember> wrapper = new QueryWrapper<>();
+        wrapper.eq("mobile",mobile);
+        Long count = baseMapper.selectCount(wrapper);
+        if (count>0){
+            throw new GuliException(20001,"手机号已经存在");
+        }
+
+        UcenterMember ucenterMember = UcenterMember.builder().mobile(mobile).
+                nickname(nickname).
+                password(MD5Util.generate(password)).
+                avatar("https://imgconvert.csdnimg.cn/aHR0cDovL3AzLnBzdGF0cC5jb20vbGFyZ2UvcGdjLWltYWdlLzg1MGExZWQxZTFiYTQxNjdhOGZiMmZhYjBiMzQyZjlm")
+                .build();
+
+        baseMapper.insert(ucenterMember);
+
     }
 }

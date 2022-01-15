@@ -1,16 +1,12 @@
 package com.atguigu.educenter.entity.po;
 
 import com.atguigu.servicebase.entity.BaseEntity;
-import com.baomidou.mybatisplus.annotation.IdType;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 /**
  * <p>
@@ -23,6 +19,9 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @ApiModel(value="UcenterMember对象", description="会员表")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UcenterMember extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
