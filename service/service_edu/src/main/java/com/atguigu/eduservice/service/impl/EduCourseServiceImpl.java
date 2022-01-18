@@ -2,11 +2,13 @@ package com.atguigu.eduservice.service.impl;
 
 import com.atguigu.commonutils.R;
 import com.atguigu.eduservice.constants.ErrorCode;
+import com.atguigu.eduservice.entity.em.CourseStatus;
 import com.atguigu.eduservice.entity.po.EduCourse;
 import com.atguigu.eduservice.entity.po.EduCourseDescription;
 import com.atguigu.eduservice.entity.vo.CourseInfoVo;
 import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseQuery;
+import com.atguigu.eduservice.entity.vo.front.CourseFrontVo;
 import com.atguigu.eduservice.mapStruct.EduCourseConverter;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
 import com.atguigu.eduservice.service.EduCourseService;
@@ -19,7 +21,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -126,5 +130,52 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         if (!res){
             throw new GuliException(ErrorCode.ERROR_CODE,"delete failed!");
         }
+    }
+
+    @Override
+    public Map<String, Object> getCourseFrontList(Page<EduCourse> pageParam, CourseFrontVo courseFrontVo) {
+        //2 根据讲师id查询所讲课程
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        //判断条件值是否为空，不为空拼接
+        if(StringUtils.hasLength(courseFrontVo.getSubjectParentId())) { //一级分类
+            wrapper.eq("subject_parent_id",courseFrontVo.getSubjectParentId());
+        }
+        if(StringUtils.hasLength(courseFrontVo.getSubjectId())) { //二级分类
+            wrapper.eq("subject_id",courseFrontVo.getSubjectId());
+        }
+        if(StringUtils.hasLength(courseFrontVo.getBuyCountSort())) { //关注度
+            wrapper.orderByDesc("buy_count");
+        }
+        if (StringUtils.hasLength(courseFrontVo.getGmtCreateSort())) { //最新
+            wrapper.orderByDesc("gmt_create");
+        }
+
+        if (StringUtils.hasLength(courseFrontVo.getPriceSort())) {//价格
+            wrapper.orderByDesc("price");
+        }
+        wrapper.eq("status", CourseStatus.NORMAL);
+
+        Page<EduCourse> eduCoursePage = baseMapper.selectPage(pageParam, wrapper);
+
+        List<EduCourse> records = eduCoursePage.getRecords();
+        long current = eduCoursePage.getCurrent();
+        long pages = eduCoursePage.getPages();
+        long size = eduCoursePage.getSize();
+        long total = eduCoursePage.getTotal();
+        boolean hasNext = eduCoursePage.hasNext();//下一页
+        boolean hasPrevious = eduCoursePage.hasPrevious();//上一页
+
+        //把分页数据获取出来，放到map集合
+        Map<String, Object> map = new HashMap<>();
+        map.put("items", records);
+        map.put("current", current);
+        map.put("pages", pages);
+        map.put("size", size);
+        map.put("total", total);
+        map.put("hasNext", hasNext);
+        map.put("hasPrevious", hasPrevious);
+
+        //map返回
+        return map;
     }
 }

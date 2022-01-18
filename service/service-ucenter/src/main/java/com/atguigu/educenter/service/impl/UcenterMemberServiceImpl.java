@@ -2,15 +2,20 @@ package com.atguigu.educenter.service.impl;
 
 import com.atguigu.commonutils.JwtUtils;
 import com.atguigu.commonutils.MD5Util;
+import com.atguigu.educenter.entity.em.ReportActionType;
 import com.atguigu.educenter.entity.po.UcenterMember;
 import com.atguigu.educenter.entity.vo.UserLoginVo;
 import com.atguigu.educenter.entity.vo.UserRegisterVo;
+import com.atguigu.educenter.event.UcenterActivity;
+import com.atguigu.educenter.event.publisher.UcenterPublish;
 import com.atguigu.educenter.mapper.UcenterMemberMapper;
 import com.atguigu.educenter.service.UcenterMemberService;
 import com.atguigu.educenter.utils.ConstantWxUtils;
+import com.atguigu.educenter.utils.HttpClientUtils;
 import com.atguigu.servicebase.exceptionHandler.GuliException;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -18,6 +23,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.net.URLEncoder;
+import java.util.Date;
+import java.util.HashMap;
 
 /**
  * <p>
@@ -33,6 +40,9 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
 
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
+
+    @Autowired
+    private UcenterPublish ucenterPublish;
 
     @Override
     public String login(UserLoginVo userLoginVo) {
@@ -121,5 +131,96 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
 
         //重定向到请求微信地址里面
         return "redirect:"+url;
+    }
+
+    @Override
+    public String callBack(String code, String state)  {
+        //1 获取code值，临时票据，类似于验证码
+        //2 拿着code请求 微信固定的地址，得到两个值 accsess_token 和 openid
+        String baseAccessTokenUrl = "https://api.weixin.qq.com/sns/oauth2/access_token" +
+                "?appid=%s" +
+                "&secret=%s" +
+                "&code=%s" +
+                "&grant_type=authorization_code";
+        // 拼接三个参数 ： id 密钥 和 code值
+        String accessTokenUrl = String.format(
+                baseAccessTokenUrl,
+                ConstantWxUtils.WX_OPEN_APP_ID,
+                ConstantWxUtils.WX_OPEN_APP_SECRET,
+                code
+        );
+        //请求这个拼接好的地址，得到返回两个值 accsess_token 和 openid
+        //使用httpclient发送请求，得到返回结果
+        String accessTokenInfo = "";
+        try{
+            accessTokenInfo = HttpClientUtils.get(accessTokenUrl);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        Gson gson = new Gson();
+        HashMap mapAccessToken = gson.fromJson(accessTokenInfo, HashMap.class);
+        String access_token = (String)mapAccessToken.get("access_token");
+        String openid = (String)mapAccessToken.get("openid");
+
+        UcenterMember uc = getUcMember(openid);
+        if(uc==null){
+            //3 拿着得到accsess_token 和 openid，再去请求微信提供固定的地址，获取到扫描人信息
+            //访问微信的资源服务器，获取用户信息
+            String baseUserInfoUrl = "https://api.weixin.qq.com/sns/userinfo" +
+                    "?access_token=%s" +
+                    "&openid=%s";
+            //拼接两个参数
+            String userInfoUrl = String.format(
+                    baseUserInfoUrl,
+                    access_token,
+                    openid
+            );
+            String userInfo = "";
+            try{
+                userInfo = HttpClientUtils.get(userInfoUrl);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
+            //获取返回userinfo字符串扫描人信息
+            HashMap userInfoMap = gson.fromJson(userInfo, HashMap.class);
+            String nickname = (String)userInfoMap.get("nickname");//昵称
+            String headimgurl = (String)userInfoMap.get("headimgurl");//头像
+             uc = UcenterMember.builder()
+                    .openid(openid)
+                    .nickname(nickname)
+                    .avatar(headimgurl)
+                    .build();
+            ucenterPublish.publishUcenterEvent(
+                    new UcenterActivity(1, ReportActionType.SAVE_USER,uc,new Date())
+                    ,true);
+        }
+        // save event
+
+        String jwtToken = JwtUtils.getJwtToken(uc.getId(), uc.getNickname());
+        //最后：返回首页面，通过路径传递token字符串
+        return "redirect:http://localhost:3000?token="+jwtToken;
+    }
+
+    @Override
+    public UcenterMember getUcMember(String openId) {
+        QueryWrapper<UcenterMember> wrapper = new QueryWrapper<>();
+        wrapper.eq("openid",openId);
+        UcenterMember ucenterMember = baseMapper.selectOne(wrapper);
+        return baseMapper.selectOne(wrapper);
+
+    }
+
+    @Override
+    public boolean registerByOpenId(String openId) {
+        QueryWrapper<UcenterMember> wrapper = new QueryWrapper<>();
+        wrapper.eq("openid",openId);
+        UcenterMember ucenterMember = baseMapper.selectOne(wrapper);
+        return ucenterMember!=null;
+    }
+
+    @Override
+    public void saveWxUser(UcenterMember ucenterMember) {
+        this.save(ucenterMember);
     }
 }

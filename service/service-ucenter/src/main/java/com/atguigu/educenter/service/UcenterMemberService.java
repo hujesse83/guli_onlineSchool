@@ -20,4 +20,12 @@ public interface UcenterMemberService extends IService<UcenterMember> {
     void register(UserRegisterVo registerVo);
 
     String generateWxCode();
+
+    String callBack(String code,String state);
+
+    boolean registerByOpenId(String openId);
+
+    UcenterMember getUcMember(String openId);
+
+    void saveWxUser(UcenterMember ucenterMember);
 }
