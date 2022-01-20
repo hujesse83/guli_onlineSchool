@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8" addBOMForNewFiles="with BOM">
     <file url="file://$PROJECT_DIR$/common/common_utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/common_utils/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/service_base/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common/service_base/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/infrastructure/api_gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/service/canal_clientedu/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service_acl/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service_cms/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service_edu/src/main/java" charset="UTF-8" />
@@ -14,5 +16,6 @@
     <file url="file://$PROJECT_DIR$/service/service_statistics/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service_ucenter/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/service/service_vod/src/main/java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

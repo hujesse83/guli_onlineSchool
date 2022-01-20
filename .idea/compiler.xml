@@ -7,23 +7,29 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="service_oss" />
-        <module name="service_statistics" />
-        <module name="service_acl" />
         <module name="common_utils" />
-        <module name="service_vod" />
-        <module name="service_base" />
-        <module name="service_edu" />
         <module name="service_order" />
         <module name="service_msm" />
         <module name="service_cms" />
+        <module name="service_oss" />
+        <module name="service_statistics" />
+        <module name="service_acl" />
+        <module name="service_vod" />
+        <module name="service_base" />
+        <module name="service_edu" />
+        <module name="canal_clientedu" />
         <module name="service_ucenter" />
+        <module name="api_gateway" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="api_gateway" target="8" />
+      <module name="canal_clientedu" target="8" />
       <module name="common" target="1.8" />
       <module name="common_utils" target="8" />
       <module name="guli_parent" target="1.8" />
+      <module name="infrastructure" target="8" />
+      <module name="insfrastuctrue" target="8" />
       <module name="service" target="1.8" />
       <module name="service_acl" target="8" />
       <module name="service_base" target="8" />
@@ -39,7 +45,11 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api_gateway" options="-parameters" />
+      <module name="canal_clientedu" options="-parameters" />
       <module name="common_utils" options="-parameters" />
+      <module name="infrastructure" options="-parameters" />
+      <module name="insfrastuctrue" options="-parameters" />
       <module name="service_acl" options="-parameters" />
       <module name="service_base" options="-parameters" />
       <module name="service_cms" options="-parameters" />

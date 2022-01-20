@@ -21,6 +21,7 @@
         <module>service_order</module>
         <module>service_oss</module>
         <module>service_statistics</module>
+        <module>canal_clientedu</module>
     </modules>
     <modelVersion>4.0.0</modelVersion>
 

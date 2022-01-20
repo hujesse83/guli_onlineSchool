@@ -17,7 +17,6 @@ import java.util.HashMap;
  * @date 2022/1/15 16:49
  */
 
-@CrossOrigin
 @Controller  //只是请求地址，不需要返回数据. 重定向不需要json数据啊
 @RequestMapping("/api/ucenter/wx")
 public class WxApiController {

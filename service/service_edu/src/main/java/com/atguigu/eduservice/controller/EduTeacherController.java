@@ -27,7 +27,6 @@ import java.util.List;
 @RequestMapping("/eduservice/teacher")
 @Api(tags = "讲师管理")
 @ApiSupport(author = "jesse.hu")  // 主要是便于找到接口拥有者
-@CrossOrigin
 public class EduTeacherController {
     @Autowired
     public EduTeacherServiceImpl eduTeacherService;
