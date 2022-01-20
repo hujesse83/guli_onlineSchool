@@ -54,6 +54,6 @@ server:
   port: 9001
 
 # 开启熔断
-#feign:
-#  hystrix:
-#    enabled: true
+feign:
+  hystrix:
+    enabled: true

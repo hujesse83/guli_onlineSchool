@@ -3,6 +3,22 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="service_oss" />
+        <module name="service_statistics" />
+        <module name="service_acl" />
+        <module name="common_utils" />
+        <module name="service_vod" />
+        <module name="service_base" />
+        <module name="service_edu" />
+        <module name="service_order" />
+        <module name="service_msm" />
+        <module name="service_cms" />
+        <module name="service_ucenter" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="common" target="1.8" />
@@ -16,8 +32,24 @@
       <module name="service_msm" target="8" />
       <module name="service_order" target="8" />
       <module name="service_oss" target="8" />
+      <module name="service_statistics" target="8" />
       <module name="service_ucenter" target="8" />
       <module name="service_vod" target="8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="common_utils" options="-parameters" />
+      <module name="service_acl" options="-parameters" />
+      <module name="service_base" options="-parameters" />
+      <module name="service_cms" options="-parameters" />
+      <module name="service_edu" options="-parameters" />
+      <module name="service_msm" options="-parameters" />
+      <module name="service_order" options="-parameters" />
+      <module name="service_oss" options="-parameters" />
+      <module name="service_statistics" options="-parameters" />
+      <module name="service_ucenter" options="-parameters" />
+      <module name="service_vod" options="-parameters" />
+    </option>
   </component>
 </project>

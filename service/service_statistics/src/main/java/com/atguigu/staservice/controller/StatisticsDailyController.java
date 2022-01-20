@@ -7,6 +7,8 @@ import com.atguigu.staservice.service.impl.StatisticsDailyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * <p>
  * 网站统计日数据 前端控制器
@@ -23,10 +25,13 @@ public class StatisticsDailyController {
     @Autowired
     private StatisticsDailyServiceImpl statisticsDailyService;
 
-    @GetMapping("/getRegisterInfo/{day}")
-    public R getRegisterInfo(@PathVariable String day){
-        StatisticsDaily statisticsDaily = statisticsDailyService.getRegisterInfo(day);
-        return R.ok().data("dailyDate",statisticsDaily);
+
+
+    //TODO replace with post method
+    @GetMapping("/getRegisterInfo/{begin}/{end}")
+    public R getStatisticData(@PathVariable String begin,@PathVariable String end){
+        Map<String, Object> resMap = statisticsDailyService.getStatisticData(begin, end);
+        return R.ok().data(resMap);
     }
 }
 

@@ -13,5 +13,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface StatisticsDailyMapper extends BaseMapper<StatisticsDaily> {
 
-    StatisticsDaily getRegisterInfo(String day);
+    StatisticsDaily getRegisterInfo(String begin,String end);
 }

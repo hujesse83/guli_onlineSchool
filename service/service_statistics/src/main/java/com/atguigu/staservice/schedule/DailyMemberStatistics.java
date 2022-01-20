@@ -27,6 +27,7 @@ public class DailyMemberStatistics {
     }
 
     @Scheduled(cron = CronStatement.DAILY)
+    //@Scheduled( fixedDelay = 8000)
     @Async("schedule-pool")  // 指定线程池的名称
     public void registerTask() {
         log.info(Thread.currentThread().getName() + " begin to anync tasks");
