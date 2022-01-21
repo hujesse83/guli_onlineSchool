@@ -50,11 +50,11 @@ public class StatisticsDailyServiceImpl extends ServiceImpl<StatisticsDailyMappe
     @Override
     public Map<String, Object> getStatisticData(String begin, String end) {
         QueryWrapper<StatisticsDaily> wrapper = new QueryWrapper<>();
-        if("null".equals(begin) && !"null".equals(end)){
-            wrapper.lt("date_calculated",end);
-        }else if("null".equals(end) && !"null".equals(begin)){
-            wrapper.gt("date_calculated",begin);
-        }else if (!"null".equals(end)){
+        if (StringUtils.isBlank(begin) && StringUtils.isNotBlank(end)){
+            wrapper.le("date_calculated",end);
+        }else if(StringUtils.isBlank(end) && StringUtils.isNotBlank(begin)){
+            wrapper.ge("date_calculated",begin);
+        }else if (StringUtils.isNotBlank(end) && StringUtils.isNotBlank(begin)){
             wrapper.between("date_calculated",begin,end);
         }
         wrapper.select("date_calculated","login_num","register_num","video_view_num","course_num");

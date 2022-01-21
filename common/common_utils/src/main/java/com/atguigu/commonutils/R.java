@@ -8,7 +8,7 @@ import java.util.Map;
 
 //统一返回结果的类
 @Data
-public class R<T> {
+public class R {
 
     @ApiModelProperty(value = "是否成功")
     private Boolean success;
@@ -20,7 +20,7 @@ public class R<T> {
     private String message;
 
     @ApiModelProperty(value = "返回数据")
-    private Map<String, Object> data = new HashMap<String, Object>();
+    private Map<String, Object> data = new HashMap<>();
 
     //把构造方法私有
     private R() {

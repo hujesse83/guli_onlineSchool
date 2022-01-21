@@ -2,7 +2,7 @@ package com.atguigu.staservice.controller;
 
 
 import com.atguigu.commonutils.R;
-import com.atguigu.staservice.entity.StatisticsDaily;
+import com.atguigu.staservice.entity.DailyQueryVo;
 import com.atguigu.staservice.service.impl.StatisticsDailyServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,11 +26,12 @@ public class StatisticsDailyController {
 
 
 
-    //TODO replace with post method
-    @GetMapping("/getRegisterInfo/{begin}/{end}")
-    public R getStatisticData(@PathVariable String begin,@PathVariable String end){
-        Map<String, Object> resMap = statisticsDailyService.getStatisticData(begin, end);
-        return R.ok().data(resMap);
+    //TODO replace with post method DONE
+    @PostMapping("/getRegisterInfo")
+    public R getStatisticData(@RequestBody DailyQueryVo dailyQueryVo){
+        Map<String, Object> resMap = statisticsDailyService.getStatisticData(dailyQueryVo.getBegin(), dailyQueryVo.getEnd());
+        R data = R.ok().data(resMap);
+        return data;
     }
 }
 
