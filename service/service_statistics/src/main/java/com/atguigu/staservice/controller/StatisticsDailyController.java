@@ -25,13 +25,11 @@ public class StatisticsDailyController {
     private StatisticsDailyServiceImpl statisticsDailyService;
 
 
-
     //TODO replace with post method DONE
     @PostMapping("/getRegisterInfo")
-    public R getStatisticData(@RequestBody DailyQueryVo dailyQueryVo){
+    public R getStatisticData(@RequestBody DailyQueryVo dailyQueryVo) {
         Map<String, Object> resMap = statisticsDailyService.getStatisticData(dailyQueryVo.getBegin(), dailyQueryVo.getEnd());
-        R data = R.ok().data(resMap);
-        return data;
+        return R.ok().data(resMap);
     }
 }
 
