@@ -34,7 +34,7 @@ public interface PermissionService extends IService<Permission> {
     List<JSONObject> selectPermissionByUserId(String id);
 
     //获取全部菜单
-    List<Permission> queryAllMenuGuli();
+    List<Permission> getAllMenuList();
 
     //递归删除菜单
     void removeChildByIdGuli(String id);

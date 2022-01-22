@@ -1,6 +1,7 @@
 package com.atguigu.aclservice.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.atguigu.aclservice.constans.PermissionConstants;
 import com.atguigu.aclservice.entity.Permission;
 import com.atguigu.aclservice.entity.RolePermission;
 import com.atguigu.aclservice.entity.User;
@@ -16,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -205,58 +208,79 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     }
 
 
-    //========================递归查询所有菜单================================================
+    //========================DFS递归查询所有菜单================================================
     //获取全部菜单
     @Override
-    public List<Permission> queryAllMenuGuli() {
-        //1 查询菜单表所有数据
+    public List<Permission> getAllMenuList() {
         QueryWrapper<Permission> wrapper = new QueryWrapper<>();
         wrapper.orderByDesc("id");
-        List<Permission> permissionList = baseMapper.selectList(wrapper);
-        //2 把查询所有菜单list集合按照要求进行封装
-        List<Permission> resultList = bulidPermission(permissionList);
-        return resultList;
+        List<Permission> allPermissionList = baseMapper.selectList(wrapper);
+        return getPermissionListBFS(allPermissionList);
     }
 
-    //把返回所有菜单list集合进行封装的方法
-    public static List<Permission> bulidPermission(List<Permission> permissionList) {
-
-        //创建list集合，用于数据最终封装
-        List<Permission> finalNode = new ArrayList<>();
-        //把所有菜单list集合遍历，得到顶层菜单 pid=0菜单，设置level是1
-        for(Permission permissionNode : permissionList) {
-            //得到顶层菜单 pid=0菜单
-            if("0".equals(permissionNode.getPid())) {
-                //设置顶层菜单的level是1
+    public static List<Permission> getPermissionListDFS(List<Permission> allPermissionList) {
+        List<Permission> resNodeList = new ArrayList<>();
+        for(Permission permissionNode : allPermissionList) {
+            if(PermissionConstants.PERMISSION_PID.equals(permissionNode.getPid())) { // 寻找顶层（一级菜单）
                 permissionNode.setLevel(1);
-                //根据顶层菜单，向里面进行查询子菜单，封装到finalNode里面
-                finalNode.add(selectChildren(permissionNode,permissionList));
+                Permission permissionItem = selectChildrenDFS(permissionNode, allPermissionList);
+                resNodeList.add(permissionItem);
             }
         }
-        return finalNode;
+        return resNodeList;
     }
 
-    private static Permission selectChildren(Permission permissionNode, List<Permission> permissionList) {
-        //1 因为向一层菜单里面放二层菜单，二层里面还要放三层，把对象初始化
-        permissionNode.setChildren(new ArrayList<Permission>());
-
-        //2 遍历所有菜单list集合，进行判断比较，比较id和pid值是否相同
-        for(Permission it : permissionList) {
-            //判断 id和pid值是否相同
-            if(permissionNode.getId().equals(it.getPid())) {
+    private static Permission selectChildrenDFS(Permission parentNode, List<Permission> allPermissionList) {
+        for(Permission item : allPermissionList) {
+            if(parentNode.getId().equals(item.getPid())) {
                 //把父菜单的level值+1
-                int level = permissionNode.getLevel()+1;
-                it.setLevel(level);
-                //如果children为空，进行初始化操作
-                if(permissionNode.getChildren() == null) {
-                    permissionNode.setChildren(new ArrayList<Permission>());
-                }
+                int level = parentNode.getLevel()+1;
+                item.setLevel(level);
                 //把查询出来的子菜单放到父菜单里面
-                permissionNode.getChildren().add(selectChildren(it,permissionList));
+                parentNode.setChildren(new ArrayList<>());
+                Permission childrenNode = selectChildrenDFS(item, allPermissionList);
+                parentNode.getChildren().add(childrenNode);
             }
         }
-        return permissionNode;
+        return parentNode;
     }
+
+    //========================BFS递归查询所有菜单================================================
+    public static List<Permission> getPermissionListBFS(List<Permission> allPermissionList) {
+        Deque<Permission> deque = new ArrayDeque<>();
+        List<Permission> resNodeList = new ArrayList<>();
+        for(Permission permissionNode : allPermissionList) {
+            if(PermissionConstants.PERMISSION_PID.equals(permissionNode.getPid())) { // 寻找顶层（一级菜单）
+                permissionNode.setLevel(1);
+                deque.add(permissionNode);
+                resNodeList.add(permissionNode);
+            }
+        }
+        while (!deque.isEmpty()){
+            int size = deque.size();
+            while(size>0){
+                Permission node = deque.poll();
+                List<Permission> childrenList = getChildrenByPId(node, allPermissionList);
+                if (childrenList==null){
+                    size--;
+                    continue;
+                }
+                for (Permission permission : childrenList) {
+                    permission.setLevel(node.getLevel() + 1);
+                    deque.offer(permission);
+                }
+                node.setChildren(childrenList);
+                size--;
+            }
+        }
+        return resNodeList;
+    }
+
+    public static List<Permission> getChildrenByPId(Permission permission,List<Permission> allPermissionList){
+        return allPermissionList.stream().filter(item-> item.getPid().equals(permission.getId())).collect(Collectors.toList());
+    }
+
+
 
     //============递归删除菜单==================================
     @Override

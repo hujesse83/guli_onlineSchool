@@ -30,7 +30,7 @@ public class PermissionController {
     @ApiOperation(value = "查询所有菜单")
     @GetMapping
     public R indexAllPermission() {
-        List<Permission> list =  permissionService.queryAllMenuGuli();
+        List<Permission> list =  permissionService.getAllMenuList();
         return R.ok().data("children",list);
     }
 
