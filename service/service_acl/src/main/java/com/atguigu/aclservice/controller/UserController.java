@@ -4,7 +4,7 @@ package com.atguigu.aclservice.controller;
 import com.atguigu.aclservice.entity.User;
 import com.atguigu.aclservice.service.RoleService;
 import com.atguigu.aclservice.service.UserService;
-import com.atguigu.commonutils.MD5;
+import com.atguigu.commonutils.MD5Util;
 import com.atguigu.commonutils.R;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -61,7 +61,7 @@ public class UserController {
     @ApiOperation(value = "新增管理用户")
     @PostMapping("save")
     public R save(@RequestBody User user) {
-        user.setPassword(MD5.encrypt(user.getPassword()));
+        user.setPassword(MD5Util.MD5(user.getPassword()));
         userService.save(user);
         return R.ok();
     }
