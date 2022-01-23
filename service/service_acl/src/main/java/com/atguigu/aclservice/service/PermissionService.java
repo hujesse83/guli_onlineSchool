@@ -22,9 +22,6 @@ public interface PermissionService extends IService<Permission> {
     //根据角色获取菜单
     List<Permission> selectAllMenu(String roleId);
 
-    //给角色分配权限
-    void saveRolePermissionRealtionShip(String roleId, String[] permissionId);
-
     //递归删除菜单
     void removeChildById(String id);
 
@@ -40,5 +37,5 @@ public interface PermissionService extends IService<Permission> {
     void removeChildByIdGuli(String id);
 
     //给角色分配权限
-    void saveRolePermissionRealtionShipGuli(String roleId, String[] permissionId);
+    void assignPermissionByRoleId(String roleId, List<String> permissionIds);
 }

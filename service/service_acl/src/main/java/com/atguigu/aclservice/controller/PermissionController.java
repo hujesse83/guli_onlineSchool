@@ -43,8 +43,8 @@ public class PermissionController {
 
     @ApiOperation(value = "给角色分配权限")
     @PostMapping("/doAssign")
-    public R doAssign(String roleId,String[] permissionId) {
-        permissionService.saveRolePermissionRealtionShipGuli(roleId,permissionId);
+    public R doAssign(String roleId,List<String> permissionIds) {
+        permissionService.assignPermissionByRoleId(roleId,permissionIds);
         return R.ok();
     }
 

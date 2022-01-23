@@ -84,25 +84,6 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         return permissionList;
     }
 
-    //给角色分配权限
-    @Override
-    public void saveRolePermissionRealtionShip(String roleId, String[] permissionIds) {
-
-        rolePermissionService.remove(new QueryWrapper<RolePermission>().eq("role_id", roleId));
-
-  
-
-        List<RolePermission> rolePermissionList = new ArrayList<>();
-        for(String permissionId : permissionIds) {
-            if(StringUtils.isEmpty(permissionId)) continue;
-      
-            RolePermission rolePermission = new RolePermission();
-            rolePermission.setRoleId(roleId);
-            rolePermission.setPermissionId(permissionId);
-            rolePermissionList.add(rolePermission);
-        }
-        rolePermissionService.saveBatch(rolePermissionList);
-    }
 
     //递归删除菜单
     @Override
@@ -164,7 +145,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
      */
     private void selectChildListById(String id, List<String> idList) {
         List<Permission> childList = baseMapper.selectList(new QueryWrapper<Permission>().eq("pid", id).select("id"));
-        childList.stream().forEach(item -> {
+        childList.forEach(item -> {
             idList.add(item.getId());
             this.selectChildListById(item.getId(), idList);
         });
@@ -213,12 +194,12 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     @Override
     public List<Permission> getAllMenuList() {
         QueryWrapper<Permission> wrapper = new QueryWrapper<>();
-        wrapper.orderByDesc("id");
+        wrapper.orderByAsc("id");
         List<Permission> allPermissionList = baseMapper.selectList(wrapper);
         return getPermissionListBFS(allPermissionList);
     }
 
-    public static List<Permission> getPermissionListDFS(List<Permission> allPermissionList) {
+    private List<Permission> getPermissionListDFS(List<Permission> allPermissionList) {
         List<Permission> resNodeList = new ArrayList<>();
         for(Permission permissionNode : allPermissionList) {
             if(PermissionConstants.PERMISSION_PID.equals(permissionNode.getPid())) { // 寻找顶层（一级菜单）
@@ -230,7 +211,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         return resNodeList;
     }
 
-    private static Permission selectChildrenDFS(Permission parentNode, List<Permission> allPermissionList) {
+    private Permission selectChildrenDFS(Permission parentNode, List<Permission> allPermissionList) {
         for(Permission item : allPermissionList) {
             if(parentNode.getId().equals(item.getPid())) {
                 //把父菜单的level值+1
@@ -246,7 +227,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     }
 
     //========================BFS递归查询所有菜单================================================
-    public static List<Permission> getPermissionListBFS(List<Permission> allPermissionList) {
+    private List<Permission> getPermissionListBFS(List<Permission> allPermissionList) {
         Deque<Permission> deque = new ArrayDeque<>();
         List<Permission> resNodeList = new ArrayList<>();
         for(Permission permissionNode : allPermissionList) {
@@ -282,51 +263,44 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 
 
 
-    //============递归删除菜单==================================
+    //============递归删除菜单, 因为是管理员才能操作, 并且菜单不会有很多级. 菜单有很多集采用bfs.
     @Override
     public void removeChildByIdGuli(String id) {
-        //1 创建list集合，用于封装所有删除菜单id值
         List<String> idList = new ArrayList<>();
-        //2 向idList集合设置删除菜单id
-        this.selectPermissionChildById(id,idList);
-        //把当前id封装到list里面
+        selectPermissionChildById(id,idList);
         idList.add(id);
         baseMapper.deleteBatchIds(idList);
     }
 
-    //2 根据当前菜单id，查询菜单里面子菜单id，封装到list集合
     private void selectPermissionChildById(String id, List<String> idList) {
-        //查询菜单里面子菜单id
         QueryWrapper<Permission>  wrapper = new QueryWrapper<>();
         wrapper.eq("pid",id);
-        wrapper.select("id");
+        wrapper.select("id");   // 查处指定列
         List<Permission> childIdList = baseMapper.selectList(wrapper);
-        //把childIdList里面菜单id值获取出来，封装idList里面，做递归查询
-        childIdList.stream().forEach(item -> {
-            //封装idList里面
-            idList.add(item.getId());
-            //递归查询
-            this.selectPermissionChildById(item.getId(),idList);
-        });
+        for (Permission childPermission : childIdList) {
+            idList.add(childPermission.getId());
+            selectPermissionChildById(childPermission.getId(), idList);
+        }
     }
 
     //=========================给角色分配菜单=======================
+
+    /**
+     * @param roleId 角色Id
+     * @param permissionIds 菜单Ids,
+     * 给角色分配多个permission
+     */
     @Override
-    public void saveRolePermissionRealtionShipGuli(String roleId, String[] permissionIds) {
-        //roleId角色id
-        //permissionId菜单id 数组形式
-        //1 创建list集合，用于封装添加数据
+    public void assignPermissionByRoleId(String roleId, List<String> permissionIds) {
+        rolePermissionService.remove(new QueryWrapper<RolePermission>().eq("role_id", roleId));
         List<RolePermission> rolePermissionList = new ArrayList<>();
         //遍历所有菜单数组
         for(String perId : permissionIds) {
-            //RolePermission对象
             RolePermission rolePermission = new RolePermission();
             rolePermission.setRoleId(roleId);
             rolePermission.setPermissionId(perId);
-            //封装到list集合
             rolePermissionList.add(rolePermission);
         }
-        //添加到角色菜单关系表
-        rolePermissionService.saveBatch(rolePermissionList);
+        rolePermissionService.saveBatch(rolePermissionList); // 多个insert.
     }
 }
