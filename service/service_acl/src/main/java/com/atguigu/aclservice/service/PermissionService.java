@@ -37,5 +37,5 @@ public interface PermissionService extends IService<Permission> {
     void removeChildByIdGuli(String id);
 
     //给角色分配权限
-    void assignPermissionByRoleId(String roleId, List<String> permissionIds);
+    void assignPermissionByRoleId(String roleId,String []permissionIds);
 }

@@ -1,59 +1,56 @@
-spring:
-  application:
-    name: service-edu
-  profiles:
-    active: dev
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    url: jdbc:mysql://localhost:3306/guli?useSSL=false&serverTimezone=GMT%2B8
-    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
-    url: jdbc:p6spy:mysql://localhost:3306/guli?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
-    username: root
-    password: root123123
-  jackson:
-    date-format: yyyy-MM-dd HH:mm:ss
-    time-zone: GMT+8
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-  redis:
-    host: 127.0.0.1
-    port: 6379
-    database: 0
-    lettuce:
-      pool:
-        max-active: 28
-        max-wait: -1
-        max-idle: 5
-        min-idle: 0
- # 配置日志  打印sql语句
-mybatis-plus:
-#  configuration:
-#     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  global-config:
-    db-config:
-      logic-delete-field: flag # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
-      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
-      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
-  mapper-locations: classpath:com/atguigu/eduservice/mapper/xml/*.xml
-hikari:
-  connection-test-query: SELECT 1
-  connection-timeout: 60000
-  idle-timeout: 500000
-  max-lifetime: 540000
-  maximum-pool-size: 12
-  minimum-idle: 10
-  pool-name: GuliHikariPool
-# 设置日志级别
-#logging:
-#  level:
-#    root: WARN
-server:
-  port: 9001
-
-# 开启熔断
-feign:
-  hystrix:
-    enabled: true
+#spring:
+#  application:
+#    name: service-edu
+#  profiles:
+#    active: dev
+#  datasource:
+#    type: com.zaxxer.hikari.HikariDataSource
+##    driver-class-name: com.mysql.cj.jdbc.Driver
+##    url: jdbc:mysql://localhost:3306/guli?useSSL=false&serverTimezone=GMT%2B8
+#    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+#    url: jdbc:p6spy:mysql://localhost:3306/guli?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+#    username: root
+#    password: root123123
+#  jackson:
+#    date-format: yyyy-MM-dd HH:mm:ss
+#    time-zone: GMT+8
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#  redis:
+#    host: 127.0.0.1
+#    port: 6379
+#    database: 0
+#    lettuce:
+#      pool:
+#        max-active: 28
+#        max-wait: -1
+#        max-idle: 5
+#        min-idle: 0
+# # 配置日志  打印sql语句
+#mybatis-plus:
+##  configuration:
+##     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#  global-config:
+#    db-config:
+#      logic-delete-field: flag # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+#      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+#      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+#  mapper-locations: classpath:com/atguigu/eduservice/mapper/xml/*.xml
+#hikari:
+#  connection-test-query: SELECT 1
+#  connection-timeout: 60000
+#  idle-timeout: 500000
+#  max-lifetime: 540000
+#  maximum-pool-size: 12
+#  minimum-idle: 10
+#  pool-name: GuliHikariPool
+#
+#server:
+#  port: 9001
+#
+#
+#feign:
+#  hystrix:
+#    enabled: true

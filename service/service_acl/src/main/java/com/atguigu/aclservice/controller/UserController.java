@@ -1,6 +1,7 @@
 package com.atguigu.aclservice.controller;
 
 
+import com.atguigu.aclservice.entity.Role;
 import com.atguigu.aclservice.entity.User;
 import com.atguigu.aclservice.service.RoleService;
 import com.atguigu.aclservice.service.UserService;
@@ -99,6 +100,13 @@ public class UserController {
     public R doAssign(@RequestParam String userId,@RequestParam String[] roleId) {
         roleService.saveUserRoleRealtionShip(userId,roleId);
         return R.ok();
+    }
+
+    @ApiOperation(value = "获取用户")
+    @GetMapping("get/{id}")
+    public R get(@PathVariable String id) {
+        User role = userService.getById(id);
+        return R.ok().data("item", role);
     }
 }
 

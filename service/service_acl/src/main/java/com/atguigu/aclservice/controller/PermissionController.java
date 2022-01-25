@@ -2,12 +2,14 @@ package com.atguigu.aclservice.controller;
 
 
 import com.atguigu.aclservice.entity.Permission;
+import com.atguigu.aclservice.entity.dto.PermissionRole;
 import com.atguigu.aclservice.service.PermissionService;
 import com.atguigu.commonutils.R;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -43,8 +45,11 @@ public class PermissionController {
 
     @ApiOperation(value = "给角色分配权限")
     @PostMapping("/doAssign")
-    public R doAssign(String roleId,List<String> permissionIds) {
-        permissionService.assignPermissionByRoleId(roleId,permissionIds);
+    public R doAssign(@RequestBody PermissionRole permissionRole) {
+        System.out.println(permissionRole.toString());
+        String[] permissionIds = permissionRole.getPermissionIds().split(",");
+        System.out.println(Arrays.toString(permissionIds));
+        permissionService.assignPermissionByRoleId(permissionRole.getRoleId(), permissionIds);
         return R.ok();
     }
 

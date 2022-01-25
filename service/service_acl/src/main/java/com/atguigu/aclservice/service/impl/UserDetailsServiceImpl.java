@@ -43,7 +43,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         // 判断用户是否存在
         if (null == user){
-            //throw new UsernameNotFoundException("用户名不存在！");
+            throw new UsernameNotFoundException("用户名不存在！");
         }
         // 返回UserDetails实现类
         com.atguigu.serurity.entity.User curUser = new com.atguigu.serurity.entity.User();

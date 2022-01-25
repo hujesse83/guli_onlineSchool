@@ -291,7 +291,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
      * 给角色分配多个permission
      */
     @Override
-    public void assignPermissionByRoleId(String roleId, List<String> permissionIds) {
+    public void assignPermissionByRoleId(String roleId,String[] permissionIds) {
         rolePermissionService.remove(new QueryWrapper<RolePermission>().eq("role_id", roleId));
         List<RolePermission> rolePermissionList = new ArrayList<>();
         //遍历所有菜单数组
