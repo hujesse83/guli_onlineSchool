@@ -29,6 +29,7 @@ public class EduCommentServiceImpl extends ServiceImpl<EduCommentMapper, EduComm
     }
 
     /**
+     * stream 流递归太吊流
      private List<EduComment> commentRecursiveHelper(EduComment comment, List<EduComment> comments) {
      return comments.stream()
      .filter(item -> Objects.equals(item.getParentId(), comment.getId()))
