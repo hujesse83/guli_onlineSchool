@@ -1,5 +1,6 @@
 package com.atguigu.servicebase.exceptionHandler;
 
+import com.atguigu.commonutils.ExceptionUtil;
 import com.atguigu.commonutils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,7 +26,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(GuliException.class)
     public R error(GuliException e){
         StackTraceElement traceElement = e.getStackTrace()[0];
-        log.error(generateErrorInfo(traceElement));
+        //log.error(generateErrorInfo(traceElement));
+        log.error(ExceptionUtil.getMessage(e));
         return R.error().code(e.getCode()).message(e.getMsg());
     }
     public String generateErrorInfo(StackTraceElement stackTraceElement){

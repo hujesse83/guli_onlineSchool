@@ -7,6 +7,8 @@ import com.atguigu.eduservice.entity.vo.CourseInfoVo;
 import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseQuery;
 import com.atguigu.eduservice.service.impl.EduCourseServiceImpl;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,10 +34,15 @@ public class EduCourseController {
         return R.ok().data("list",list);
     }
 
+    @ApiOperation(value = "条件分页讲师列表")
     @PostMapping("/pageCourseCondition/{current}/{limit}")
-    public R getPageCourseCondition(@PathVariable long current,
-                                    @PathVariable long limit,
-                                    @RequestBody(required = false) CourseQuery courseQuery){
+    public R getPageCourseCondition(
+            @ApiParam(name = "current", value = "当前页",required = true)
+            @PathVariable long current,
+            @ApiParam(name = "limit", value = "每页记录数",required = true)
+            @PathVariable long limit,
+            @ApiParam(name = "courseQuery", value = "查询对象")
+            @RequestBody(required = false) CourseQuery courseQuery){
         return eduCourseService.queryCourseCondition(current,limit,courseQuery);
     }
 
