@@ -24,6 +24,7 @@ import java.util.List;
 /**
  * <p>
  * 访问过滤器
+ * 授权过滤
  * </p>
  *
  * @author qy

@@ -19,7 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * <p>
- * Security配置类
+ * Security核心配置类
  * </p>
  *
  * @author qy
@@ -45,7 +45,7 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * 配置设置
+     * 配置设置自定义的过滤器
      * @param http
      * @throws Exception
      */
