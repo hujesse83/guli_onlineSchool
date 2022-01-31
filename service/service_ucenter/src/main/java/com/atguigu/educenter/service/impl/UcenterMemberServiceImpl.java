@@ -107,15 +107,14 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
     @Override
     public String generateWxCode() {
         String baseUrl = "https://open.weixin.qq.com/connect/qrconnect" +
-                "?appid=%s" +
-                "&redirect_uri=%s" +
-                "&response_type=code" +
-                "&scope=snsapi_login" +
+                "?appid=%s" +  // 让微信知道是谁在请求
+                "&redirect_uri=%s" +   // 是B接受或拒绝请求后的跳转地址
+                "&response_type=code" +  // response_type 表示要求返回授权码(code)
+                "&scope=snsapi_login" +  // 表示要请求的授权范围
                 "&state=%s" +
                 "#wechat_redirect";
-
         //对redirect_url进行URLEncoder编码
-        String redirectUrl = ConstantWxUtils.WX_OPEN_REDIRECT_URL;
+        String redirectUrl = ConstantWxUtils.WX_OPEN_REDIRECT_URL; // localhost:8160/api/ucenter/wx/callback
         try {
             redirectUrl = URLEncoder.encode(redirectUrl, "utf-8");
         }catch(Exception ignored) {
@@ -130,18 +129,21 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         );
 
         //重定向到请求微信地址里面
+        log.info("请求授权码的重定向url是 redirect+ {}",url);
         return "redirect:"+url;
     }
 
     @Override
     public String callBack(String code, String state)  {
+        // 在上面方法的response_type=code, 微信会返回授权码code
+        log.info("code={},state={}",code,state);
         //1 获取code值，临时票据，类似于验证码
         //2 拿着code请求 微信固定的地址，得到两个值 accsess_token 和 openid
         String baseAccessTokenUrl = "https://api.weixin.qq.com/sns/oauth2/access_token" +
                 "?appid=%s" +
                 "&secret=%s" +
                 "&code=%s" +
-                "&grant_type=authorization_code";
+                "&grant_type=authorization_code";  // 表示采用的方式是授权码
         // 拼接三个参数 ： id 密钥 和 code值
         String accessTokenUrl = String.format(
                 baseAccessTokenUrl,
@@ -158,6 +160,7 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
             e.printStackTrace();
         }
         Gson gson = new Gson();
+        log.info("会员确认登录之后, 返回的accessTokenInfo={}",accessTokenInfo);
         HashMap mapAccessToken = gson.fromJson(accessTokenInfo, HashMap.class);
         String access_token = (String)mapAccessToken.get("access_token");
         String openid = (String)mapAccessToken.get("openid");
