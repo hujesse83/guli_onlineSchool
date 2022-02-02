@@ -1,0 +1,4 @@
+2022-01-25 17:58:46.338 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-oss-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 17:58:46.341 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-oss-dev-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 17:58:49.729 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-01-25 17:58:49.735 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.

@@ -1,0 +1,160 @@
+2022-02-02 13:26:27.713 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-02 13:26:28.084 [main] INFO  c.a.n.client.config.impl.LocalConfigInfoProcessor - LOCAL_SNAPSHOT_PATH:/Users/jhu/nacos/config
+2022-02-02 13:26:28.128 [main] INFO  com.alibaba.nacos.client.config.impl.Limiter - limitTime:5.0
+2022-02-02 13:26:28.164 [main] INFO  com.alibaba.nacos.client.config.utils.JVMUtil - isMultiInstance:false
+2022-02-02 13:26:28.180 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-edu-dev-dev.properties,DEFAULT_GROUP'}, NacosPropertySource {name='service-edu-dev.properties,DEFAULT_GROUP'}, NacosPropertySource {name='service-edu-dev,DEFAULT_GROUP'}]}
+2022-02-02 13:26:28.189 [main] INFO  com.atguigu.eduservice.EduApplication - The following profiles are active: dev
+2022-02-02 13:26:29.490 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-02-02 13:26:29.500 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-02-02 13:26:29.575 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 42ms. Found 0 repository interfaces.
+2022-02-02 13:26:30.033 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=ed93683c-8ad3-3c31-8758-0e5979b18c5e
+2022-02-02 13:26:30.397 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-02 13:26:30.593 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisConfig' of type [com.atguigu.servicebase.handler.RedisConfig$$EnhancerBySpringCGLIB$$237be180] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-02 13:26:30.639 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-02 13:26:30.965 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9001 (http)
+2022-02-02 13:26:30.976 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9001"]
+2022-02-02 13:26:30.976 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-02-02 13:26:30.977 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+2022-02-02 13:26:31.132 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-02-02 13:26:31.133 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2902 ms
+2022-02-02 13:26:33.326 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-02-02 13:26:33.349 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-02-02 13:26:33.355 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-02-02 13:26:33.494 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-02-02 13:26:33.718 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'Nacso-Watch-Task-Scheduler'
+2022-02-02 13:26:33.726 [main] INFO  com.alibaba.nacos.client.naming - initializer namespace from System Property :null
+2022-02-02 13:26:33.727 [main] INFO  com.alibaba.nacos.client.naming - initializer namespace from System Environment :null
+2022-02-02 13:26:33.728 [main] INFO  com.alibaba.nacos.client.naming - initializer namespace from System Property :null
+2022-02-02 13:26:34.095 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2022-02-02 13:26:34.122 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2022-02-02 13:26:34.181 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2022-02-02 13:26:34.426 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getCourseInfoUsingGET_1
+2022-02-02 13:26:34.675 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-9001"]
+2022-02-02 13:26:34.712 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9001 (http) with context path ''
+2022-02-02 13:26:34.715 [main] INFO  com.alibaba.nacos.client.naming - [BEAT] adding beat: {"cluster":"DEFAULT","ip":"192.168.1.20","metadata":{"preserved.register.source":"SPRING_CLOUD"},"period":5000,"port":9001,"scheduled":false,"serviceName":"DEFAULT_GROUP@@service-edu","stopped":false,"weight":1.0} to beat map.
+2022-02-02 13:26:34.804 [main] INFO  com.alibaba.nacos.client.naming - [REGISTER-SERVICE] public registering service DEFAULT_GROUP@@service-edu with instance: {"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"ip":"192.168.1.20","ipDeleteTimeout":30000,"metadata":{"preserved.register.source":"SPRING_CLOUD"},"port":9001,"weight":1.0}
+2022-02-02 13:26:34.817 [main] INFO  c.a.cloud.nacos.registry.NacosServiceRegistry - nacos registry, DEFAULT_GROUP service-edu 192.168.1.20:9001 register finished
+2022-02-02 13:26:34.822 [main] INFO  com.atguigu.eduservice.EduApplication - Started EduApplication in 9.044 seconds (JVM running for 10.755)
+2022-02-02 13:26:34.826 [main] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [subscribe] service-edu-dev.properties+DEFAULT_GROUP+1242b4e2-70e1-4fdb-8df2-d9f05ff86b03
+2022-02-02 13:26:34.827 [main] INFO  com.alibaba.nacos.client.config.impl.CacheData - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [add-listener] ok, tenant=1242b4e2-70e1-4fdb-8df2-d9f05ff86b03, dataId=service-edu-dev.properties, group=DEFAULT_GROUP, cnt=1
+2022-02-02 13:26:34.827 [main] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [subscribe] service-edu-dev+DEFAULT_GROUP+1242b4e2-70e1-4fdb-8df2-d9f05ff86b03
+2022-02-02 13:26:34.827 [main] INFO  com.alibaba.nacos.client.config.impl.CacheData - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [add-listener] ok, tenant=1242b4e2-70e1-4fdb-8df2-d9f05ff86b03, dataId=service-edu-dev, group=DEFAULT_GROUP, cnt=1
+2022-02-02 13:26:34.828 [main] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [subscribe] service-edu-dev-dev.properties+DEFAULT_GROUP+1242b4e2-70e1-4fdb-8df2-d9f05ff86b03
+2022-02-02 13:26:34.828 [main] INFO  com.alibaba.nacos.client.config.impl.CacheData - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [add-listener] ok, tenant=1242b4e2-70e1-4fdb-8df2-d9f05ff86b03, dataId=service-edu-dev-dev.properties, group=DEFAULT_GROUP, cnt=1
+2022-02-02 13:26:34.835 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 13:27:04.535 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 13:27:29.939 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService 'Nacso-Watch-Task-Scheduler'
+2022-02-02 13:27:29.940 [SpringContextShutdownHook] INFO  c.a.cloud.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-02-02 13:27:29.941 [SpringContextShutdownHook] INFO  com.alibaba.nacos.client.naming - [BEAT] removing beat: DEFAULT_GROUP@@service-edu:192.168.1.20:9001 from beat map.
+2022-02-02 13:27:29.941 [SpringContextShutdownHook] INFO  com.alibaba.nacos.client.naming - [DEREGISTER-SERVICE] public deregistering service DEFAULT_GROUP@@service-edu with instance: {"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceIdGenerator":"simple","ip":"192.168.1.20","ipDeleteTimeout":30000,"metadata":{},"port":9001,"weight":1.0}
+2022-02-02 13:27:29.946 [SpringContextShutdownHook] INFO  c.a.cloud.nacos.registry.NacosServiceRegistry - De-registration finished.
+2022-02-02 13:27:29.947 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-02-02 13:30:07.359 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-02 13:30:07.532 [main] INFO  c.a.n.client.config.impl.LocalConfigInfoProcessor - LOCAL_SNAPSHOT_PATH:/Users/jhu/nacos/config
+2022-02-02 13:30:07.569 [main] INFO  com.alibaba.nacos.client.config.impl.Limiter - limitTime:5.0
+2022-02-02 13:30:07.603 [main] INFO  com.alibaba.nacos.client.config.utils.JVMUtil - isMultiInstance:false
+2022-02-02 13:30:07.620 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-edu-dev-dev.properties,DEFAULT_GROUP'}, NacosPropertySource {name='service-edu-dev.properties,DEFAULT_GROUP'}, NacosPropertySource {name='service-edu-dev,DEFAULT_GROUP'}]}
+2022-02-02 13:30:07.629 [main] INFO  com.atguigu.eduservice.EduApplication - The following profiles are active: dev
+2022-02-02 13:30:08.578 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-02-02 13:30:08.581 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-02-02 13:30:08.621 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 25ms. Found 0 repository interfaces.
+2022-02-02 13:30:08.911 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=ed93683c-8ad3-3c31-8758-0e5979b18c5e
+2022-02-02 13:30:09.222 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-02 13:30:09.384 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisConfig' of type [com.atguigu.servicebase.handler.RedisConfig$$EnhancerBySpringCGLIB$$6f4aa4b9] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-02 13:30:09.422 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-02 13:30:09.664 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9001 (http)
+2022-02-02 13:30:09.675 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9001"]
+2022-02-02 13:30:09.675 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-02-02 13:30:09.676 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+2022-02-02 13:30:09.836 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-02-02 13:30:09.836 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2174 ms
+2022-02-02 13:30:11.531 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-02-02 13:30:11.555 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-02-02 13:30:11.562 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-02-02 13:30:11.684 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-02-02 13:30:11.826 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'Nacso-Watch-Task-Scheduler'
+2022-02-02 13:30:11.833 [main] INFO  com.alibaba.nacos.client.naming - initializer namespace from System Property :null
+2022-02-02 13:30:11.834 [main] INFO  com.alibaba.nacos.client.naming - initializer namespace from System Environment :null
+2022-02-02 13:30:11.835 [main] INFO  com.alibaba.nacos.client.naming - initializer namespace from System Property :null
+2022-02-02 13:30:12.120 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2022-02-02 13:30:12.141 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2022-02-02 13:30:12.176 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2022-02-02 13:30:12.389 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getCourseInfoUsingGET_1
+2022-02-02 13:30:12.508 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-9001"]
+2022-02-02 13:30:12.546 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9001 (http) with context path ''
+2022-02-02 13:30:12.548 [main] INFO  com.alibaba.nacos.client.naming - [BEAT] adding beat: {"cluster":"DEFAULT","ip":"192.168.1.20","metadata":{"preserved.register.source":"SPRING_CLOUD"},"period":5000,"port":9001,"scheduled":false,"serviceName":"DEFAULT_GROUP@@service-edu","stopped":false,"weight":1.0} to beat map.
+2022-02-02 13:30:12.765 [main] INFO  com.alibaba.nacos.client.naming - [REGISTER-SERVICE] public registering service DEFAULT_GROUP@@service-edu with instance: {"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"ip":"192.168.1.20","ipDeleteTimeout":30000,"metadata":{"preserved.register.source":"SPRING_CLOUD"},"port":9001,"weight":1.0}
+2022-02-02 13:30:12.778 [main] INFO  c.a.cloud.nacos.registry.NacosServiceRegistry - nacos registry, DEFAULT_GROUP service-edu 192.168.1.20:9001 register finished
+2022-02-02 13:30:12.783 [main] INFO  com.atguigu.eduservice.EduApplication - Started EduApplication in 8.196 seconds (JVM running for 8.971)
+2022-02-02 13:30:12.787 [main] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [subscribe] service-edu-dev.properties+DEFAULT_GROUP+1242b4e2-70e1-4fdb-8df2-d9f05ff86b03
+2022-02-02 13:30:12.788 [main] INFO  com.alibaba.nacos.client.config.impl.CacheData - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [add-listener] ok, tenant=1242b4e2-70e1-4fdb-8df2-d9f05ff86b03, dataId=service-edu-dev.properties, group=DEFAULT_GROUP, cnt=1
+2022-02-02 13:30:12.789 [main] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [subscribe] service-edu-dev+DEFAULT_GROUP+1242b4e2-70e1-4fdb-8df2-d9f05ff86b03
+2022-02-02 13:30:12.789 [main] INFO  com.alibaba.nacos.client.config.impl.CacheData - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [add-listener] ok, tenant=1242b4e2-70e1-4fdb-8df2-d9f05ff86b03, dataId=service-edu-dev, group=DEFAULT_GROUP, cnt=1
+2022-02-02 13:30:12.790 [main] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [subscribe] service-edu-dev-dev.properties+DEFAULT_GROUP+1242b4e2-70e1-4fdb-8df2-d9f05ff86b03
+2022-02-02 13:30:12.790 [main] INFO  com.alibaba.nacos.client.config.impl.CacheData - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [add-listener] ok, tenant=1242b4e2-70e1-4fdb-8df2-d9f05ff86b03, dataId=service-edu-dev-dev.properties, group=DEFAULT_GROUP, cnt=1
+2022-02-02 13:30:12.798 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 13:30:18.458 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService 'Nacso-Watch-Task-Scheduler'
+2022-02-02 13:30:18.460 [SpringContextShutdownHook] INFO  c.a.cloud.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-02-02 13:30:18.460 [SpringContextShutdownHook] INFO  com.alibaba.nacos.client.naming - [BEAT] removing beat: DEFAULT_GROUP@@service-edu:192.168.1.20:9001 from beat map.
+2022-02-02 13:30:18.461 [SpringContextShutdownHook] INFO  com.alibaba.nacos.client.naming - [DEREGISTER-SERVICE] public deregistering service DEFAULT_GROUP@@service-edu with instance: {"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceIdGenerator":"simple","ip":"192.168.1.20","ipDeleteTimeout":30000,"metadata":{},"port":9001,"weight":1.0}
+2022-02-02 13:30:18.464 [SpringContextShutdownHook] INFO  c.a.cloud.nacos.registry.NacosServiceRegistry - De-registration finished.
+2022-02-02 13:30:18.464 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'
+2022-02-02 14:11:58.098 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-02 14:11:58.293 [main] INFO  c.a.n.client.config.impl.LocalConfigInfoProcessor - LOCAL_SNAPSHOT_PATH:/Users/jhu/nacos/config
+2022-02-02 14:11:58.346 [main] INFO  com.alibaba.nacos.client.config.impl.Limiter - limitTime:5.0
+2022-02-02 14:11:58.386 [main] INFO  com.alibaba.nacos.client.config.utils.JVMUtil - isMultiInstance:false
+2022-02-02 14:11:58.402 [main] INFO  o.s.c.b.c.PropertySourceBootstrapConfiguration - Located property source: CompositePropertySource {name='NACOS', propertySources=[NacosPropertySource {name='service-edu-dev-dev.properties,DEFAULT_GROUP'}, NacosPropertySource {name='service-edu-dev.properties,DEFAULT_GROUP'}, NacosPropertySource {name='service-edu-dev,DEFAULT_GROUP'}]}
+2022-02-02 14:11:58.412 [main] INFO  com.atguigu.eduservice.EduApplication - The following profiles are active: dev
+2022-02-02 14:11:59.745 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode!
+2022-02-02 14:11:59.752 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data repositories in DEFAULT mode.
+2022-02-02 14:11:59.810 [main] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 33ms. Found 0 repository interfaces.
+2022-02-02 14:12:00.107 [main] INFO  o.springframework.cloud.context.scope.GenericScope - BeanFactory id=ed93683c-8ad3-3c31-8758-0e5979b18c5e
+2022-02-02 14:12:00.496 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration' of type [org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-02 14:12:00.738 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'redisConfig' of type [com.atguigu.servicebase.handler.RedisConfig$$EnhancerBySpringCGLIB$$d686dd52] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-02 14:12:00.785 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration' of type [org.springframework.cloud.autoconfigure.ConfigurationPropertiesRebinderAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2022-02-02 14:12:01.078 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 9001 (http)
+2022-02-02 14:12:01.091 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-9001"]
+2022-02-02 14:12:01.092 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-02-02 14:12:01.092 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.27]
+2022-02-02 14:12:01.272 [main] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-02-02 14:12:01.273 [main] INFO  org.springframework.web.context.ContextLoader - Root WebApplicationContext: initialization completed in 2803 ms
+2022-02-02 14:12:03.488 [main] INFO  s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-02-02 14:12:03.524 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-02-02 14:12:03.533 [main] INFO  com.netflix.config.sources.URLConfigurationSource - To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2022-02-02 14:12:03.739 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Initializing ExecutorService 'applicationTaskExecutor'
+2022-02-02 14:12:03.883 [main] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Initializing ExecutorService 'Nacso-Watch-Task-Scheduler'
+2022-02-02 14:12:03.893 [main] INFO  com.alibaba.nacos.client.naming - initializer namespace from System Property :null
+2022-02-02 14:12:03.894 [main] INFO  com.alibaba.nacos.client.naming - initializer namespace from System Environment :null
+2022-02-02 14:12:03.895 [main] INFO  com.alibaba.nacos.client.naming - initializer namespace from System Property :null
+2022-02-02 14:12:04.295 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Context refreshed
+2022-02-02 14:12:04.336 [main] INFO  s.d.s.web.plugins.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+2022-02-02 14:12:04.388 [main] INFO  s.d.spring.web.scanners.ApiListingReferenceScanner - Scanning for api listing references
+2022-02-02 14:12:04.625 [main] INFO  s.d.s.w.r.operation.CachingOperationNameGenerator - Generating unique operation named: getCourseInfoUsingGET_1
+2022-02-02 14:12:04.897 [main] INFO  org.apache.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-9001"]
+2022-02-02 14:12:04.941 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port(s): 9001 (http) with context path ''
+2022-02-02 14:12:04.944 [main] INFO  com.alibaba.nacos.client.naming - [BEAT] adding beat: {"cluster":"DEFAULT","ip":"192.168.1.20","metadata":{"preserved.register.source":"SPRING_CLOUD"},"period":5000,"port":9001,"scheduled":false,"serviceName":"DEFAULT_GROUP@@service-edu","stopped":false,"weight":1.0} to beat map.
+2022-02-02 14:12:05.048 [main] INFO  com.alibaba.nacos.client.naming - [REGISTER-SERVICE] public registering service DEFAULT_GROUP@@service-edu with instance: {"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"ip":"192.168.1.20","ipDeleteTimeout":30000,"metadata":{"preserved.register.source":"SPRING_CLOUD"},"port":9001,"weight":1.0}
+2022-02-02 14:12:05.065 [main] INFO  c.a.cloud.nacos.registry.NacosServiceRegistry - nacos registry, DEFAULT_GROUP service-edu 192.168.1.20:9001 register finished
+2022-02-02 14:12:05.071 [main] INFO  com.atguigu.eduservice.EduApplication - Started EduApplication in 9.723 seconds (JVM running for 10.546)
+2022-02-02 14:12:05.075 [main] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [subscribe] service-edu-dev.properties+DEFAULT_GROUP+1242b4e2-70e1-4fdb-8df2-d9f05ff86b03
+2022-02-02 14:12:05.076 [main] INFO  com.alibaba.nacos.client.config.impl.CacheData - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [add-listener] ok, tenant=1242b4e2-70e1-4fdb-8df2-d9f05ff86b03, dataId=service-edu-dev.properties, group=DEFAULT_GROUP, cnt=1
+2022-02-02 14:12:05.076 [main] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [subscribe] service-edu-dev+DEFAULT_GROUP+1242b4e2-70e1-4fdb-8df2-d9f05ff86b03
+2022-02-02 14:12:05.077 [main] INFO  com.alibaba.nacos.client.config.impl.CacheData - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [add-listener] ok, tenant=1242b4e2-70e1-4fdb-8df2-d9f05ff86b03, dataId=service-edu-dev, group=DEFAULT_GROUP, cnt=1
+2022-02-02 14:12:05.077 [main] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [subscribe] service-edu-dev-dev.properties+DEFAULT_GROUP+1242b4e2-70e1-4fdb-8df2-d9f05ff86b03
+2022-02-02 14:12:05.077 [main] INFO  com.alibaba.nacos.client.config.impl.CacheData - [fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] [add-listener] ok, tenant=1242b4e2-70e1-4fdb-8df2-d9f05ff86b03, dataId=service-edu-dev-dev.properties, group=DEFAULT_GROUP, cnt=1
+2022-02-02 14:12:05.084 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 14:12:34.787 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 14:13:04.295 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 14:13:33.803 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 14:14:03.309 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 14:14:32.819 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 14:15:02.324 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 14:15:31.830 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 14:16:01.335 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 14:16:30.861 [com.alibaba.nacos.client.Worker.longPolling.fixed-127.0.0.1_8848-1242b4e2-70e1-4fdb-8df2-d9f05ff86b03] INFO  com.alibaba.nacos.client.config.impl.ClientWorker - get changedGroupKeys:[]
+2022-02-02 14:16:43.310 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskScheduler - Shutting down ExecutorService 'Nacso-Watch-Task-Scheduler'
+2022-02-02 14:16:43.314 [SpringContextShutdownHook] INFO  c.a.cloud.nacos.registry.NacosServiceRegistry - De-registering from Nacos Server now...
+2022-02-02 14:16:43.314 [SpringContextShutdownHook] INFO  com.alibaba.nacos.client.naming - [BEAT] removing beat: DEFAULT_GROUP@@service-edu:192.168.1.20:9001 from beat map.
+2022-02-02 14:16:43.317 [SpringContextShutdownHook] INFO  com.alibaba.nacos.client.naming - [DEREGISTER-SERVICE] public deregistering service DEFAULT_GROUP@@service-edu with instance: {"clusterName":"DEFAULT","enabled":true,"ephemeral":true,"healthy":true,"instanceHeartBeatInterval":5000,"instanceHeartBeatTimeOut":15000,"instanceIdGenerator":"simple","ip":"192.168.1.20","ipDeleteTimeout":30000,"metadata":{},"port":9001,"weight":1.0}
+2022-02-02 14:16:43.328 [SpringContextShutdownHook] INFO  c.a.cloud.nacos.registry.NacosServiceRegistry - De-registration finished.
+2022-02-02 14:16:43.329 [SpringContextShutdownHook] INFO  o.s.scheduling.concurrent.ThreadPoolTaskExecutor - Shutting down ExecutorService 'applicationTaskExecutor'

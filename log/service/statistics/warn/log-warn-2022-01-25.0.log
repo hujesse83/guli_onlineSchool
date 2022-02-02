@@ -1,0 +1,6 @@
+2022-01-25 18:01:52.089 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-statistics-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 18:01:52.092 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-statistics-dev-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 18:01:56.727 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-01-25 18:01:56.739 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-01-25 18:28:04.557 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9m47s785ms).
+2022-01-25 22:09:58.671 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h41m54s115ms).

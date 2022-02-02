@@ -1,0 +1,2 @@
+2022-01-26 21:27:57.714 [http-nio-8160-exec-5] ERROR c.a.s.exceptionHandler.GlobalExceptionHandler - error occurs com.atguigu.educenter.service.impl.UcenterMemberServiceImplclass, in loginmethod in line number of 70
+2022-01-26 21:27:59.510 [http-nio-8160-exec-6] ERROR c.a.s.exceptionHandler.GlobalExceptionHandler - error occurs com.atguigu.educenter.service.impl.UcenterMemberServiceImplclass, in loginmethod in line number of 70

@@ -1,0 +1,8 @@
+2022-01-25 17:43:26.684 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-cms-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 17:43:26.687 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-cms-dev-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 17:43:30.653 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-01-25 17:43:30.674 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-01-25 17:44:10.090 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-cms-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 17:44:10.092 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-cms-dev-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 17:44:13.551 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-01-25 17:44:13.557 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.

@@ -1,0 +1,12 @@
+2022-01-25 18:06:48.085 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-vod-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 18:06:48.088 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-vod-dev-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 18:06:51.782 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-01-25 18:06:51.795 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-01-25 18:07:31.372 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-vod-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 18:07:31.377 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-vod-dev-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 18:07:34.576 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-01-25 18:07:34.582 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-01-25 18:07:58.300 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-vod-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 18:07:58.306 [main] WARN  c.a.cloud.nacos.client.NacosPropertySourceBuilder - Ignore the empty nacos configuration and get it based on dataId[service-vod-dev-dev.properties] & group[DEFAULT_GROUP]
+2022-01-25 18:08:01.447 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.
+2022-01-25 18:08:01.453 [main] WARN  com.netflix.config.sources.URLConfigurationSource - No URLs will be polled as dynamic configuration sources.

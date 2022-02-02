@@ -1,0 +1,13 @@
+2022-01-25 17:22:36.344 [main] ERROR org.springframework.boot.SpringApplication - Application run failed
+java.lang.IllegalStateException: [service-acl-port-dev] must contains file extension with properties|yaml|yml|xml|json
+	at com.alibaba.cloud.nacos.parser.NacosDataParserHandler.checkDataId(NacosDataParserHandler.java:68)
+	at com.alibaba.cloud.nacos.client.NacosPropertySourceLocator.checkConfiguration(NacosPropertySourceLocator.java:179)
+	at com.alibaba.cloud.nacos.client.NacosPropertySourceLocator.loadExtConfiguration(NacosPropertySourceLocator.java:128)
+	at com.alibaba.cloud.nacos.client.NacosPropertySourceLocator.locate(NacosPropertySourceLocator.java:102)
+	at org.springframework.cloud.bootstrap.config.PropertySourceBootstrapConfiguration.initialize(PropertySourceBootstrapConfiguration.java:98)
+	at org.springframework.boot.SpringApplication.applyInitializers(SpringApplication.java:626)
+	at org.springframework.boot.SpringApplication.prepareContext(SpringApplication.java:370)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:314)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at com.atguigu.aclservice.ServiceAclApplication.main(ServiceAclApplication.java:16)

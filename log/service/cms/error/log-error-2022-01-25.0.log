@@ -1,0 +1,14 @@
+2022-01-25 17:43:31.592 [main] ERROR o.s.b.diagnostics.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 9004 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 9004 or configure this application to listen on another port.
+
