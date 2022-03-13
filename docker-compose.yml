@@ -1,0 +1,167 @@
+﻿version: "3"
+
+services:
+  nacos:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-nacos
+    container_name: nacos
+    ports:
+      - "8848:8848"
+    restart: always
+    entrypoint: ./wait-for-it.sh mysql:3306 -t 0 --bin docker-startup.sh
+    depends_on:
+      - mysql
+    environment:
+      - PREFER_HOST_MODE=hostname
+      - MODE=standalone
+      - SPRING_DATASOURCE_PLATFORM=mysql
+      - MYSQL_SERVICE_HOST=mysql
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_DB_NAME=nacos_config
+      - MYSQL_SERVICE_USER=root
+      - MYSQL_SERVICE_PASSWORD=root123
+      - MYSQL_SERVICE_DB_PARAM=useSSL=false&serverTimezone=GMT%2B8
+    networks:
+      - online-education
+  mysql:
+    image: mysql:8.0.22
+    restart: always
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: "root123123"
+    networks:
+      - online-education
+  redis:
+    image: redis:6.0.8
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - online-education
+  api_gateway:
+    build:
+      context: .
+      dockerfile: ./infrastructure/api_gateway/Dockerfile
+    container_name: api_gateway
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar api_gateway.jar
+    depends_on:
+      - mysql
+      - nacos
+    restart: always
+    ports:
+      - "80:80"
+    networks:
+      - online-education
+  service_edu:
+    build:
+      context: .
+      dockerfile: ./service/service_acl/Dockerfile
+    container_name: service_edu
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_edu-0.0.1-SNAPSHOT.jar
+    depends_on:
+      - mysql
+      - redis
+      - nacos
+    restart: always
+    ports:
+      - "9001:9001"
+    networks:
+      - online-education
+  service_oss:
+    build:
+      context: .
+      dockerfile: ./service/service_oss/Dockerfile
+    container_name: service_oss
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_oss-0.0.1-SNAPSHOT.jar
+    depends_on:
+      - mysql
+      - nacos
+      - redis
+    restart: always
+    ports:
+      - "9002:9002"
+    networks:
+      - online-education
+  service_cms:
+    build:
+      context: .
+      dockerfile: ./service/service_cms/Dockerfile
+    container_name: service_cms
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_cms-0.0.1-SHANPSHOT.jar
+    depends_on:
+      - mysql
+      - nacos
+      - redis
+    restart: always
+    ports:
+      - "9004:9004"
+    networks:
+      - online-education
+  service_center:
+    build:
+      context: .
+      dockerfile: ./service/service_ucenter/Dockerfile
+    container_name: service_ucenter
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_center-0.0.1-SHANPSHOT.jar
+    depends_on:
+      - mysql
+      - nacos
+      - redis
+    restart: always
+    ports:
+      - "9005:9005"
+    networks:
+      - online-education
+  service_order:
+    build:
+      context: .
+      dockerfile: ./service/service_order/Dockerfile
+    container_name: service_order
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_order-0.0.1-SHANPSHOT.jar
+    depends_on:
+      - mysql
+      - nacos
+      - redis
+    restart: always
+    ports:
+      - "9006:9006"
+    networks:
+      - online-education
+  service_statistic:
+    build:
+      context: .
+      dockerfile: ./service/service_statistic/Dockerfile
+    container_name: service_statistic
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_statictis-0.0.1-SHANPSHOT.jar
+    depends_on:
+      - mysql
+      - nacos
+      - redis
+    restart: always
+    ports:
+      - "9007:9007"
+    networks:
+      - online-education
+  service_acl:
+    build:
+      context: .
+      dockerfile: ./service/service_acl/Dockerfile
+    container_name: service_acl8008
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_acl-0.0.1-SNAPSHOT.jar
+    depends_on:
+      - mysql
+      - nacos
+      - redis
+    restart: always
+    ports:
+      - "9008:9008"
+    networks:
+      - online-education
+networks:
+  online-education:
