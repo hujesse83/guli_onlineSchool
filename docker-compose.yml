@@ -30,20 +30,25 @@ services:
     container_name: mysql
     ports:
       - "3307:3306"
-    command: --default-authentication-plugin=mysql_native_password
+    command: --default-authentication-plugin=mysql_native_password # 解决外部网段无法访问
     volumes:
       - ./sql:/docker-entrypoint-initdb.d
     environment:
       MYSQL_ROOT_PASSWORD: "root123123"
+      MYSQL_USER: "root"
+      MYSQL_DATABASE: "guli"
     networks:
       - online-education
   redis:
     image: redis:6.0.8
     container_name: redis
+    volumes:
+      - /usr/local/ect/redis.conf:/etc/redis/redis.conf
     ports:
       - "6379:6379"
     networks:
       - online-education
+    command: redis-server /usr/local/etc/redis.conf
   api_gateway:
     build:
       context: .
@@ -63,7 +68,7 @@ services:
       context: .
       dockerfile: ./service/service_acl/Dockerfile
     container_name: service_edu
-    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_edu-0.0.1-SNAPSHOT.jar
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_edu-1.0-SNAPSHOT.jar
     depends_on:
       - mysql
       - redis
@@ -78,7 +83,7 @@ services:
       context: .
       dockerfile: ./service/service_oss/Dockerfile
     container_name: service_oss
-    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_oss-0.0.1-SNAPSHOT.jar
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_oss-1.0-SNAPSHOT.jar
     depends_on:
       - mysql
       - nacos
@@ -93,7 +98,7 @@ services:
       context: .
       dockerfile: ./service/service_cms/Dockerfile
     container_name: service_cms
-    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_cms-0.0.1-SHANPSHOT.jar
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_cms-1.0-SHANPSHOT.jar
     depends_on:
       - mysql
       - nacos
@@ -108,7 +113,7 @@ services:
       context: .
       dockerfile: ./service/service_ucenter/Dockerfile
     container_name: service_ucenter
-    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_center-0.0.1-SHANPSHOT.jar
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_center-1.0-SHANPSHOT.jar
     depends_on:
       - mysql
       - nacos
@@ -123,7 +128,7 @@ services:
       context: .
       dockerfile: ./service/service_order/Dockerfile
     container_name: service_order
-    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_order-0.0.1-SHANPSHOT.jar
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_order-1.0-SHANPSHOT.jar
     depends_on:
       - mysql
       - nacos
@@ -133,12 +138,12 @@ services:
       - "9006:9006"
     networks:
       - online-education
-  service_statistic:
+  service_statistics:
     build:
       context: .
-      dockerfile: ./service/service_statistic/Dockerfile
-    container_name: service_statistic
-    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_statictis-0.0.1-SHANPSHOT.jar
+      dockerfile: ./service/service_statistics/Dockerfile
+    container_name: service_statistics
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_statictis-1.0-SHANPSHOT.jar
     depends_on:
       - mysql
       - nacos
@@ -152,8 +157,8 @@ services:
     build:
       context: .
       dockerfile: ./service/service_acl/Dockerfile
-    container_name: service_acl8008
-    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_acl-0.0.1-SNAPSHOT.jar
+    container_name: service_acl
+    command: ./wait-for-it.sh nacos:8848 -t 0 -- java -jar service_acl-1.0-SNAPSHOT.jar
     depends_on:
       - mysql
       - nacos
