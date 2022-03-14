@@ -43,12 +43,11 @@ services:
     image: redis:6.0.8
     container_name: redis
     volumes:
-      - /usr/local/ect/redis.conf:/etc/redis/redis.conf
+      - /usr/local/etc/redis.conf:/etc/redis/redis.conf
     ports:
       - "6379:6379"
     networks:
       - online-education
-    command: redis-server /usr/local/etc/redis.conf
   api_gateway:
     build:
       context: .
